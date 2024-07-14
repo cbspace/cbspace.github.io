@@ -3,6 +3,29 @@ body {
     color: white;
 }
 
-a {
+#sidepanel {
+    border-style: none;
+    width: 25%;
+    height: 98%;
+}
+
+#mainframe {
+    border-style: none;
+    width: 65%;
+    height: 98%;
+}
+
+a:link, a:visited, a:active {
     color: rgb(0, 200, 0);
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgb(0, 240, 0);
+    text-decoration: none;
+}
+
+/* Main text area of articles */
+.freetext {
+    white-space: pre;
 }
