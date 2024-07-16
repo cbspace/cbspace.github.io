@@ -36,10 +36,15 @@
       <code>conda env create -f environment.yaml</code>
       <p>
       Installing packages:<br>
-      <code>conda install [package_name]</code>
+      <code>conda install [package_name]</code><br>
+      I have found that installing packages with PIP usually provides newer package versions and results
+      in less conflicts so I recommend it over conda for installations. Simply replace conda in the 
+      command above with pip.
       <p>
       List installed packages:<br>
-      <code>conda list  </code>
+      <code>conda list  </code><br>
+      This will also list packages installed with pypi (via the pip install commdand). These packages
+      will have pypi listed as the channel.
     </div>
   </div> 
 </body>
