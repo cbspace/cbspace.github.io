@@ -8,7 +8,7 @@ body {
 }
 
 h1 {
-    margin: 0px;
+    margin: 0px 0px 18px 0px;
 }
 
 code {
@@ -21,10 +21,11 @@ code {
 
 #sidepanel {
     border-style: none;
-    width: 25%;
+    width: 20%;
     height: 98%;
     position: relative;
     float: left;
+    margin-left: 1%;
 }
 
 #sidepanel iframe {
@@ -38,7 +39,10 @@ code {
     width: 65%;
     height: 98%;
     position: relative;
-    float: right;
+    float: left;
+    margin-left: 3%;
+    margin-right: 3%;
+    text-align: justify;
 }
 
 a:link, a:visited, a:active {
@@ -51,7 +55,7 @@ a:hover {
     text-decoration: none;
 }
 
-/* Main text area of articles */
+/* Used when no HTML formatting is required */
 .freetext {
     white-space: pre;
 }

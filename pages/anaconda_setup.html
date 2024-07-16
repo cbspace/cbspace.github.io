@@ -1,48 +1,46 @@
 <html>
 <head>
-<title>Anaconda Setup</title>
-<link rel="stylesheet" href="../css/main.css">
+  <title>Anaconda Setup</title>
+  <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
-<div id="pagecont">
-<div id="sidepanel"><iframe name="sidepanel" src="../sidepanel.html"></iframe></div>
-<h1>Anaconda Setup</h1>
-<div class="maincont">
-<div class="freetext">
-Anaconda is a great version control tool for, especially for Python based AI projects. The following instructions will assist
-in installing and using Ananconda.
-
-Installing conda:
-<a href="=https://conda.io/projects/conda/en/latest/user-guide/install/index.html">Conda Installation Guide</a>
-
-Creating a virtual environment (optional python version shown in braces):
-<code>conda create -n [env_name] {python=3.11}</code>
-
-Listing virtual environments:
-<code>conda env list</code>
-
-Removing a virtual environment:
-<code>conda remove --name [env_name] --all</code>
-
-Activating a virtual environment:
-<code>source activate [env_name]</code>
-
-Deactivating a virtual environment:
-<code>conda deactivate</code>
-
-Exporting a virtual environment (saved to enviornment.yaml):
-<code>conda env export &gt environment.yaml</code>
-
-Creating a virtual environment from a file (imported from enviornment.yaml):
-<code>conda env create -f environment.yaml</code>
-
-Installing packages:
-<code>conda install [package_name]</code>
-
-List installed packages:
-<code>conda list  </code>
-</div>  
-</div>
-</div> 
+  <div id="pagecont">
+    <div id="sidepanel"><iframe name="sidepanel" src="../sidepanel.html"></iframe></div>
+    <div id="maincont">
+    <h1>Anaconda Setup</h1>  
+      Anaconda is a great version control tool for, especially for Python based AI projects. The following instructions will assist
+      in installing and using Ananconda.
+      <p>
+      Installing conda:<br>
+      <a href="=https://conda.io/projects/conda/en/latest/user-guide/install/index.html">Conda Installation Guide</a>
+      <p>
+      Creating a virtual environment (optional python version shown in braces):<br>
+      <code>conda create -n [env_name] {python=3.11}</code>
+      <p>
+      Listing virtual environments:<br>
+      <code>conda env list</code>
+      <p>
+      Removing a virtual environment:<br>
+      <code>conda remove --name [env_name] --all</code>
+      <p>
+      Activating a virtual environment:<br>
+      <code>source activate [env_name]</code>
+      <p>
+      Deactivating a virtual environment:<br>
+      <code>conda deactivate</code>
+      <p>
+      Exporting a virtual environment (saved to enviornment.yaml):<br>
+      <code>conda env export &gt environment.yaml</code>
+      <p>
+      Creating a virtual environment from a file (imported from enviornment.yaml):<br>
+      <code>conda env create -f environment.yaml</code>
+      <p>
+      Installing packages:<br>
+      <code>conda install [package_name]</code>
+      <p>
+      List installed packages:<br>
+      <code>conda list  </code>
+    </div>
+  </div> 
 </body>
-</html>
+</html>  
