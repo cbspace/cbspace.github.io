@@ -16,10 +16,22 @@
     recently and it can be difficult to keep up with the latest developments. It's still good to read the older papers to
     get an idea of where the latest AI developments have come from. A lot of new papers also build upon previous works.
     <p>
-    <h2>Transformers</h2>
-    <a href="https://arxiv.org/abs/1706.03762">Attention Is All You Need</a><br>
+    <h2>Large Language Models</h2>
+    <a class="linkbold" href="https://arxiv.org/abs/1706.03762">Attention Is All You Need</a><br>
     This groundbreaking paper from 2017 introduced the Transformer model. This is what begun the developments of the powerful
     GPT models that we see used in LLMs today.
+    <p>
+    <a class="linkbold" href="https://arxiv.org/abs/2106.09685">LoRA: Low-Rank Adaptation of Large Language Models</a><br>
+    LoRA is a method of fine tuning LLMs without retraining all the parameters. This method instead freezes all the parameters
+    and then injects low rank matrices into each layer of the tranformer. These matrices are then fine tuned to the desired
+    domain specific content. The result is a significant reduction in compute required for fine tuning with negligilbe loss 
+    in model performance.
+    <p>
+    <a class="linkbold" href="https://arxiv.org/abs/2312.00752">Mamba: Linear-Time Sequence Modeling with Selective State Spaces</a><br>
+    State Space Models are an alternative to Transformers which perform just as well. SSMs have the advantage in terms of 
+    compute requirements and scaling. Transformers scale with an N<sup>2</sup> law due to their matrix multiplications whereas Mamba 
+    scales linearly due to it's RNN based structure. Mamba adds some additional functionality over basic SSMs and is designed 
+    to process natural langauge.
     </div>
   </div> 
 </body>

@@ -49,6 +49,7 @@ code {
 
 p {
     margin-bottom: 30px;
+    line-height: 1.5;
 }
 
 a:link, a:visited, a:active {
@@ -59,6 +60,10 @@ a:link, a:visited, a:active {
 a:hover {
     color: rgb(0, 240, 0);
     text-decoration: none;
+}
+
+.linkbold {
+    font-weight: bold;
 }
 
 /* Used when no HTML formatting is required */
