@@ -68,6 +68,12 @@ a:hover {
     font-size: 14pt;
 }
 
+.subtitle {
+    font-style: italic;
+    font-size: 12pt;
+    margin-bottom: 10px;
+}
+
 /* Used when no HTML formatting is required */
 .freetext {
     white-space: pre;
