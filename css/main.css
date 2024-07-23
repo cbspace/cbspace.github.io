@@ -28,7 +28,8 @@ code {
     height: 98%;
     position: relative;
     float: left;
-    margin-left: 1%;
+    margin-left: 2%;
+    margin-right: 2%;
 }
 
 #sidepanel iframe {
@@ -39,7 +40,7 @@ code {
 
 #maincont {
     border-style: none;
-    width: 60%;
+    width: 50%;
     height: 98%;
     position: relative;
     float: left;
