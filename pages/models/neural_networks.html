@@ -15,7 +15,25 @@
     which is used to learn a representaion that maps the input to the output. 
     <p>
     Neural Networks are "trained" on data to "learn" the optimal values for the parameters in the network. Once fully trained the Neural Network can be
-    given any input and that input is tranformed into a "prediction" by the network.
+    given an input that it hasn't seen before and the input is tranformed into a "prediction" by the network. An example is an image classification network
+    that can predict whether an inputted image is of a cat or a dog. The input to the network would be the pixels of the image and the output would be a 
+    single decimal number (probability) between 0 and 1 which represents the likelihood of the image being a cat. A trained Neural Network could perform
+    this classification task on images of cats and dogs that were not in the training set.
+    <p>
+    There are many different types of Neural Networks and they all excel at different tasks. For basic regression and classification type tasks the standard
+    "fully connected" neural network, also know as a Multilayer Perceptron, performs well. They are named as such as they have a number of "layers" of neurons. 
+    Each layer consists of a row of neurons and each neuron in the layer is connected to all neurons in the previous layer and the next layer.
+    <p>
+    For image-based classiciation tasks a popular model type is the Convolutional Neural Network (CNN). A CNN uses "convolutional" layers rather than layers
+    of neurons. The reason for this is that convolutions are suited to image data. Images are arranged as 2D arrays of pixels and for colour images there are
+    red, green and blue channels. CNNs are able to consider the spatial dimensionality of imgaes and can look at corrlations between adjacent pixels. CNNs
+    can also reduce the spatial dimensionality of an image and compress the information into "latent representaions". These representaions can be thought
+    of as a brief summary of the image contents. 
+    <p>
+    CNNs are very good at identifying small features of an image. For example an with images of faces the network could learn the patterns of facial features
+    such as eyes and ears. CNNs typically use one or more MLP layers after the convolutional layers to perform classiciation or othe tasks. These are
+    kown as "classification layers".
+
     </div>
   </div> 
 </body>
