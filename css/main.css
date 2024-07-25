@@ -6,12 +6,25 @@ body {
 }
 
 #pagecont {
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 h1 {
     margin: 0px 0px 18px 0px;
     text-align: center;
+    font-family: Optimistic Display,Montserrat,Helvetic,Arial,Noto,Sans,sans-serif;
+}
+
+h2 {
+    font-family: Optimistic Display,Montserrat,Helvetic,Arial,Noto,Sans,sans-serif;
+}
+
+.paneltopictop {
+    margin: 50px 0px 6px 0px;
+}
+
+.paneltopic {
+    margin: 24px 0px 6px 0px;
 }
 
 code {
