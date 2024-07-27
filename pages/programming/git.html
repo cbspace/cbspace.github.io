@@ -1,0 +1,81 @@
+<html>
+<head>
+  <title>GIT Version Control</title>
+  <link href="../../images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <link rel="stylesheet" href="../../css/main.css">
+</head>
+<body>
+  <div id="pagecont">
+    <div id="sidepanel"><iframe name="sidepanel" src="../sidepanel.html"></iframe></div>
+    <div id="maincont">
+    <h1>GIT Version Control</h1>
+    <p>
+    Git is a commonly used&nbsp;version control tool. It is also a repository for source code and other project files. 
+    This page provides a basic overview of using Git from the command line as well as other useful info.
+    <div class="listingcont">
+        <h2>Configuration</h2>
+        <p>
+        The Git config tool can be opened by typing <code class="inline">git config</code> at the command line. 
+        To view the config use <code class="inline">git config --list</code>. The following are some useful commands.
+        <p>
+        Setting username and email<br>
+        <code class="inline">git config --global user.name "My Name"<br>
+        git config --global user.email myname@mydomain.com</code>
+        <p>
+        To set up the default text editor (for example Notepad++)<br>
+        <code class="inline">git config --global core.editor "'C:/Program Files/Notepad++/notepad++.exe' <br>-multiInst -nosession"</code>
+
+        <h2>Clone a Repository</h2>
+        <p>
+        To clone an existing repository from Github use the&nbsp;<code class="inline">clone&nbsp;</code>command:<br>
+        <code class="inline">git clone https://github.com/myname/myrepo.git</code>
+        
+        <h2>Create New Repository</h2>
+        <p>
+        <code class="inline">git init</code>&nbsp;To initialise a repository and&nbsp;create the .git directory.<br>
+        <code class="inline">git add *</code>&nbsp;To track files. A .gitignore file should also be used so that only desired files are tracked
+        <p>
+        <code class="inline">git commit -m "first commit"</code>&nbsp;To commit changes on tracked files
+        <p>
+        <code class="inline">git remote add origin https://github.com/myname/myrepo.git</code>&nbsp;Add remote
+        <p>
+        To remove remote:&nbsp;<code class="inline">git remote rm origin</code>
+        <p>
+        <code class="inline">git push -u origin master</code> Push code to remote
+
+        <h2>Update Local to Match Remote</h2>
+        <p>
+        A git pull command will fetch data from the remote location (eg.Github) and merge it with the local files. It's a 
+        good idea to do a pull request before working on some files, to make sure your base files match remote. This is 
+        especially important if working from multiple PCs.
+        <p>
+        <code class="inline">git pull &lt;remote&gt;</code>
+        
+        <h2>Update Remote to Match Local</h2>
+        <p>
+        <code class="inline">git commit -am "Updated Files"</code>
+        <p>
+        The -a flag tells git to update all tracked files, the m flag tells git to add a commit message
+        <p>
+        <code class="inline">git push origin master</code>
+        <p>
+        <code class="inline">-f</code> flag can be added to force update, only use if you wish to overwrite remote files!
+        <p>
+        If you wish to perform multiple commits and push them together, the rebase command can be used:
+        <p>
+        <code class="inline">git rebase --interactive HEAD~2</code> would combine the previous 2 commits
+        
+        <h2>Restore Local files</h2>
+        <p>
+        The <code class="inline">git checkout</code> command can be used to restore local files to match the Master branch. 
+        This is useful if a local file is unintentionally deleted or modified and you do not wish to commit these changes. 
+        For this command to work the changes must not be staged/committed. You can use <code class="inline">git status</code> 
+        to check if the changes are staged.
+        <p>
+        <code class="inline">git checkout -- &lt;file(s)&gt;</code>
+    </div>
+    <div style="height:160px;"></div>
+    </div>
+  </div> 
+</body>
+</html>  
