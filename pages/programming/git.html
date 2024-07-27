@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>GIT Version Control</title>
+  <title>Git Version Control</title>
   <link href="../../images/favicon.ico" rel="shortcut icon" type="image/x-icon">
   <link rel="stylesheet" href="../../css/main.css">
 </head>
@@ -10,38 +10,69 @@
     <div id="maincont">
     <h1>GIT Version Control</h1>
     <p>
-    Git is a commonly used&nbsp;version control tool. It is also a repository for source code and other project files. 
-    This page provides a basic overview of using Git from the command line as well as other useful info.
+    Git is a commonly used version control tool for managing software source code files. Git is capable of managing
+    any file type including binary files. It's efficient in terms of storage as it only tracks the deltas for modified 
+    files. A Git history (stored in ".git" directories) contains all previous modification states and allows full
+    history tracking and recovery.
+    <p>
+    Github is the most common online Git repository service and is free to access. Web based repositories and known
+    as "remote" repositories in Git terminology. There are GUI based Git tools and tools integrated into IDEs that
+    provide easy access to beginners. For example VSCode contains Git functionality by default. For people who prefer
+    command line functionality Git has you covered. I personally prefer to use Git via the command-line interface (CLI).
+    <p>
+    The following command-line instructions are the mostly used Git commands that you should get familiar with. 
+    Even if you prefer to use a GUI application it's beneficial to learn these as it's a great way to become familiar
+    with the Git workflow and terminology.
     <div class="listingcont">
         <h2>Configuration</h2>
         <p>
-        The Git config tool can be opened by typing <code class="inline">git config</code> at the command line. 
+        The Git config tool can be opened by typing <code class="inline">git config</code> at the command-line. 
         To view the config use <code class="inline">git config --list</code>. The following are some useful commands.
         <p>
-        Setting username and email<br>
+        Setting username and email:<br>
         <code class="inline">git config --global user.name "My Name"<br>
         git config --global user.email myname@mydomain.com</code>
         <p>
-        To set up the default text editor (for example Notepad++)<br>
+        To set up the default text editor (for example Notepad++ on Windows):<br>
         <code class="inline">git config --global core.editor "'C:/Program Files/Notepad++/notepad++.exe' <br>-multiInst -nosession"</code>
 
         <h2>Clone a Repository</h2>
         <p>
-        To clone an existing repository from Github use the&nbsp;<code class="inline">clone&nbsp;</code>command:<br>
+        To clone an existing repository from Github use the <code class="inline">clone</code> command. This will copy
+        the repository into the current directory under a new directory with the same name as the repository name.<br>
         <code class="inline">git clone https://github.com/myname/myrepo.git</code>
         
-        <h2>Create New Repository</h2>
+        <h2>Create New Local Repository</h2>
         <p>
-        <code class="inline">git init</code>&nbsp;To initialise a repository and&nbsp;create the .git directory.<br>
-        <code class="inline">git add *</code>&nbsp;To track files. A .gitignore file should also be used so that only desired files are tracked
+        <code class="inline">git init</code> To initialise a repository based from the current directory and create a .git directory.<br>
+
+        <h2>Adding Files to a Commit</h2>
+        A "commit" in Git terminology refers to a collection of file altertations. When creating a new repository you would most likely
+        create a commit containing all the relevant files. When modifying an existing an existing repository you would create individual
+        commits for each related set of changes.
         <p>
-        <code class="inline">git commit -m "first commit"</code>&nbsp;To commit changes on tracked files
+        <code class="inline">git add *</code> This will add all files and all file modifications in the current directory to the next 
+        Git commit A .gitignore file should can be used to specify which files or file types you do not wish to add.
         <p>
-        <code class="inline">git remote add origin https://github.com/myname/myrepo.git</code>&nbsp;Add remote
+        If you only wish to commit individual files or individual modifications you can specify filenames:<br>
+        <code>git add &lt;filenames&gt;</code>
         <p>
-        To remove remote:&nbsp;<code class="inline">git remote rm origin</code>
+        A handy feature is to use the git add command with the -p flag which will prompt you for every alteration whether or not to add the
+        alteration to the next commit. This is useful if you have made multiple alterations and wish to add them to more than one commit. 
+        See the breakdown of options <a href="https://stackoverflow.com/questions/1085162/commit-only-part-of-a-files-changes-in-git" target="_blank">here</a>.<br>
+        <code>git add -p</code>
         <p>
-        <code class="inline">git push -u origin master</code> Push code to remote
+        After adding files or modifications to a commit you can create the commit with the <code>git commit</code>command. The -a flag
+        is used when you wish to add all tracked file modifications to the commit. It can be omitted if you have already added modifications
+        using the git add command. The -m flag stands for "message" and allows you to add a description for the commit.<br>
+        <code class="inline">git commit -am "First commit"</code> 
+        <p>
+        When you are ready to upload your location repository to Github you will need to add a "remote". This tells Git the location of
+        the remote repository.<br>
+        <code class="inline">git remote add origin https://github.com/myname/myrepo.git</code>
+        <p>
+        If you wish to remove a remote location you can use:<br>
+        <code class="inline">git remote rm origin</code>
 
         <h2>Update Local to Match Remote</h2>
         <p>
@@ -53,18 +84,13 @@
         
         <h2>Update Remote to Match Local</h2>
         <p>
-        <code class="inline">git commit -am "Updated Files"</code>
-        <p>
-        The -a flag tells git to update all tracked files, the m flag tells git to add a commit message
-        <p>
-        <code class="inline">git push origin master</code>
-        <p>
-        <code class="inline">-f</code> flag can be added to force update, only use if you wish to overwrite remote files!
-        <p>
-        If you wish to perform multiple commits and push them together, the rebase command can be used:
-        <p>
+        Now the moment all the hard work has lead to! To "push" you files and changes to the remote location use <code>git push</code>.
+        The "main" location specified here is the branch name. Git will use main as the default however it's possible to rename it. It's
+        also possible to add multiple branches when adding new features to your application.<br>
+        <code class="inline">git push -u origin main</code> 
+        <!-- <p>
         <code class="inline">git rebase --interactive HEAD~2</code> would combine the previous 2 commits
-        
+        -->
         <h2>Restore Local files</h2>
         <p>
         The <code class="inline">git checkout</code> command can be used to restore local files to match the Master branch. 
