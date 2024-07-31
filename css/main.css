@@ -10,30 +10,12 @@ body {
     margin-top: 30px;
 }
 
-h1 {
-    margin: 0px 0px 20px 0px;
-    text-align: center;
-    font-family: Optimistic Display,Montserrat,Helvetic,Arial,Noto,Sans,sans-serif;
-}
-
-h2 {
-    font-family: Optimistic Display,Montserrat,Helvetic,Arial,Noto,Sans,sans-serif;
-}
-
 .paneltopictop {
     margin: 50px 0px 6px 0px;
 }
 
 .paneltopic {
     margin: 24px 0px 6px 0px;
-}
-
-code {
-    font-size: 12pt;
-    background-color: rgb(30, 30, 30);
-    margin: 4px 0px 4px 0px;
-    padding: 2px 6px 2px 6px;
-    display: inline-block;
 }
 
 #sidepanel {
@@ -75,40 +57,4 @@ code {
     bottom: 30px;
     left: 46%;
     font-size: 11pt;
-}
-
-p {
-    margin-bottom: 30px;
-    line-height: 1.5;
-}
-
-.listingcont p {
-    margin-bottom: 22px;
-    line-height: 1.5;
-}
-
-a:link, a:visited, a:active {
-    color: rgb(0, 200, 0);
-    text-decoration: none;
-}
-
-a:hover {
-    color: rgb(0, 240, 0);
-    text-decoration: none;
-}
-
-.linkbold {
-    font-weight: bold;
-    font-size: 14pt;
-}
-
-.subtitle {
-    font-style: italic;
-    font-size: 12pt;
-    margin-bottom: 10px;
-}
-
-/* Used when no HTML formatting is required */
-.freetext {
-    white-space: pre;
 }
