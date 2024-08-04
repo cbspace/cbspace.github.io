@@ -16,6 +16,15 @@ code {
     display: inline-block;
 }
 
+.cblock {
+    font-size: 12pt;
+    background-color: rgb(30, 30, 30);
+    margin: 4px 0px 4px 0px;
+    padding: 2px 6px 2px 6px;
+    display: block;
+    white-space: pre;
+}
+
 p {
     margin-bottom: 30px;
     line-height: 1.5;
