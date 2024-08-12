@@ -18,6 +18,7 @@
     pitfalls of subscription based models. The following are the steps that I undertook to get LLMs running locally with a web
     interface. As usual I'm running this on a Linux based PC.
     <h2>Ollama</h2>
+    <p>
     <a href="https://github.com/ollama/ollama" target="_blank">Ollamla</a> is a simple way to run LLMs locally. The installation
     is quite straightforward and uses a bash script. The recommended intall is to use the curl and pipe to sh. Feel free to inspect
     the script contents if you wish!
@@ -35,6 +36,7 @@
     <img src="../../images/llm_terminal.jpg" style="width: 80%; height: auto; display: block; margin-left: auto; margin-right: auto;">
     <p>
     <h2>CPU or GPU, that is the qestion</h2>
+    <p>
     Ollama is good at detecting which hardware to use by default. If you have an NVIDIA GPU and have CUDA installed it will use
     the GPU. The same goes with AMD GPUs and ROCm. If you don't have an adequate GPU or the correct packages installed it will run
     on CPU. This is usually a bad experience that gets exponetially bad with the size of the model. 
@@ -49,6 +51,7 @@
     exact amount depends on many factors (quantization for example).
 
     <h2>Web interface</h2>
+    <p>
     The terminal is cool and all but what I really want is a web interface similar to that of ChatGPT. Forunately there are a few
     options here. I went with <a href="https://github.com/open-webui/open-webui">open-webui</a> which is both open source
     easy to setup.
