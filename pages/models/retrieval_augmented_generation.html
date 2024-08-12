@@ -1,0 +1,30 @@
+<html>
+<head>
+  <title>RAG Models</title>
+  <link href="../../images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/text_elements.css">
+</head>
+<body>
+  <div id="pagecont">
+    <div id="sidepanel"><iframe name="sidepanel" src="../sidepanel.html"></iframe></div>
+    <div id="maincont">
+    <h1>Retrieval Augmented Generataion</h1>
+    <p>
+    RAG Models extend the functionality of LLMs by allowing them to be fine tuned on a local knowledge base. As the
+    name suggests the models are able to retieve additional information to assist with the generated output. This additional
+    information is usually in the form of a "vector database" which is created from the desired local documents and texts. RAG
+    was first introducted in the following <a href="https://arxiv.org/abs/2005.11401" target="_blank">paper</a>.
+    <p>
+    The principal of RAG only works for Sequence2Sequence models which are encoder-decorder architectures. The reason for this 
+    is that the RAG model inclues a "retreiver" that is fine-tuned to the additional documents. Therefore "BERT" style models 
+    are used rather than "GPT" style decoder-only models. It also means that there is some preparation required in order to set 
+    up a RAG model with your documents.
+    <p>
+    To see an example of RAG checkout my 
+    <a href="https://github.com/cbspace/AI-Notebooks/blob/main/LLMs/RAG/RAG%20Models.ipynb" target="_blank">notebook</a>.
+    </div>
+  </div>
+  <div id="footer"><div id="footercont">© Craig Brennan 2024</div></div>
+</body>
+</html>  
