@@ -30,10 +30,10 @@
     <p>
     <code>ollama run gemma2:27b</code>
     <p>
-    You can chat directly with the LLM via this interface and to quit use the command "/bye".<br>
-  
-    <img src="../../images/llm_terminal.jpg" style="transform: scale(0.73); margin: -40;">
-
+    You can chat directly with the LLM via this interface and to quit use the command "/bye".<br> 
+    <p>
+    <img src="../../images/llm_terminal.jpg" style="width: 80%; height: auto; display: block; margin-left: auto; margin-right: auto;">
+    <p>
     <h2>CPU or GPU, that is the qestion</h2>
     Ollama is good at detecting which hardware to use by default. If you have an NVIDIA GPU and have CUDA installed it will use
     the GPU. The same goes with AMD GPUs and ROCm. If you don't have an adequate GPU or the correct packages installed it will run
@@ -55,7 +55,7 @@
     <p>
     Installation is simple using docker. The following terminal command got me up and running:<br>
     <p>
-      <code>docker run -d --network=host -v open-webui:/app/backend/data <br>
+      <code style="width: 100%;">docker run -d --network=host -v open-webui:/app/backend/data <br>
         -e WEBUI_AUTH=False -e OLLAMA_BASE_URL=http://127.0.0.1:11434 <br>
         --name open-webui --restart always 
         ghcr.io/open-webui/open-webui:main</code>
@@ -64,9 +64,9 @@
     3000 or something else if running the standard docker commands to launch open-webio. The above config is what worked for me.
     One you are in go to user icon - settings - admin settings - connections. Then under "Ollama API" enter: http://127.0.0.1:11434.
     Click the refresh arrow to the left and you should see a green message box that says "Server connection verified".<br>
-
-    <img src="../../images/open-webui.jpg" style="transform: scale(0.73); margin: -80; position: relative; left: -60px;">
-
+    <p>
+    <img src="../../images/open-webui.jpg" style="width: 90%; height: auto; display: block; margin-left: auto; margin-right: auto;">
+    <p>
     At the top is a drop down list of all the Ollama models you have download - select one and get chatting!
     </div>
     <div style="height: 160px;"></div>
