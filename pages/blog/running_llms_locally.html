@@ -28,7 +28,7 @@
     contains a nice list of models and commands to run them. For example, to run Gemma2 27B see the below. Ollama will download 
     the model and run it in the terminal.
     <p>
-    <code>ollama run llama3.1</code>
+    <code>ollama run gemma2:27b</code>
     <p>
     You can chat directly with the LLM via this interface and to quit use the command "/bye".<br>
   
@@ -41,6 +41,12 @@
     <p>
     If you are running smaller models on a machine with a fast CPU and RAM you may have an adequate experience. The limiting factor
     when running on CPU will be the RAM speed. I'd recommended fast DDR5 if you are going this route.
+    <p>
+    When choosing which model to run you will need to consider how much VRAM you wish to consume. Most of the 7b or 8b models will
+    use less than 8GB VRAM. Others will fit in a 16GB or 24GB video card and some will exceed that. If the model requires more RAM 
+    than your video card can supply then Ollama will split the model across the GPU/VRAM and CPU/RAM. This will end up being slow
+    so it's best to avoid this situation. The number of model parameters will give a rough idea of VRAM requirements however the 
+    exact amount depends on many factors (quantization for example).
 
     <h2>Web interface</h2>
     The terminal is cool and all but what I really want is a web interface similar to that of ChatGPT. Forunately there are a few
@@ -49,8 +55,9 @@
     <p>
     Installation is simple using docker. The following terminal command got me up and running:<br>
     <p>
-      <code class="cblock">docker run -d --network=host -v open-webui:/app/backend/data -e WEBUI_AUTH=False 
-        -e OLLAMA_BASE_URL=http://127.0.0.1:11434 --name open-webui --restart always 
+      <code>docker run -d --network=host -v open-webui:/app/backend/data <br>
+        -e WEBUI_AUTH=False -e OLLAMA_BASE_URL=http://127.0.0.1:11434 <br>
+        --name open-webui --restart always 
         ghcr.io/open-webui/open-webui:main</code>
     <p>
     Now to access the web interface by opening a browser and navigating to http://127.0.0.1:8080. Note this port number could be
