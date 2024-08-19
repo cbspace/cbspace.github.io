@@ -11,8 +11,13 @@
     <div id="maincont">
     <h1>Anaconda Setup</h1>
     <p>
-    Anaconda is a great version control tool for, especially for Python based AI projects. The following instructions will assist
-    in installing and using Ananconda.
+    Anaconda is a great package management tool for, especially for Python based AI projects. Package management is required due to
+    the differing package dependencies for various AI tools and libraries. Ananconda allows you to create different environments
+    which have a different set of packages and versions.
+    <p>
+    For example you man need CUDA 11.8 and torch 1.8 for a particular application and another man require CUDA 12.4 and torch 2.0.1. 
+    Having separate virtual environments allows this different configurations to exist on the same machine. The following instructions 
+    will assist in installing and using Ananconda.
       <div class="listingcont">
       <p>
       Installing conda:<br>
@@ -41,17 +46,37 @@
       <p>
       Installing packages:<br>
       <code>conda install [package_name]</code><br>
+      This will install the latest version of the package available in the conda channels. 
       I have found that installing packages with PIP usually provides newer package versions and results
       in less conflicts so I recommend it over conda for installations. Simply replace conda in the 
       command above with pip.
+      <p>
+      To install a particular version of a package use:
+      <code>conda install [package_name]=[version]</code><br>
       <p>
       List installed packages:<br>
       <code>conda list  </code><br>
       This will also list packages installed with pypi (via the pip install commdand). These packages
       will have pypi listed as the channel.
       <p>
+      Adding channels:<br>
+      Channels allow for additions package sources. One of the most common is conda-forge which will be 
+      reqiuired for some packages.<br>
+      <code>conda config --add channels conda-forge</code>
+      <p>
       Configure conda to not run the base environment when opening the terminal:<br>
       <code>conda config --set auto_activate_base false</code>
+
+      <h2>Tips for Package Management</h2>
+      <p>
+      If you run into version conflicts with packages and binaries the first thing to check is the path
+      that is being used. This can be done with the which command. For example if you have a conflict with
+      the gcc version you can use this command to check which gcc is being used:<br>
+      <code>which gcc</code><br>
+      If the outputted path is /usr/bin/package it means conda is targetting the default system installation
+      (probably due to that particular package not being intstalled in the current conda environment). If the path
+      is /home/user/miniconda3/envs/env_name/bin/package then the package being targeted is installed in the conda
+      environment. If you need to install another version of the package use "conda install package_name=version".
       </div>
       <div style="height:160px;"></div>
     </div>
