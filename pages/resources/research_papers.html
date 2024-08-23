@@ -36,13 +36,27 @@
     scales linearly due to it's RNN based structure. Mamba adds some additional functionality over basic SSMs and is designed 
     to process natural langauge.
 
+    <h2>Neural Radiance Fields and Gaussian Splatting</h2>
+    <p>
+    <a class="linkbold" href="https://arxiv.org/abs/2003.08934" target="_blank">NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis</a><br>
+    The paper which introduced the NeRF in 2020. Neural Radiance fields are a method of representing a 3d scene from a fully-connected (MLP) model. The model
+    is trained on a set of photographs from a scene and learns the 3d representation of the scene including view dependent colours and reflections. Once 
+    trained the model can output a 2d image of the scene from the desired camera location and angle. This is known as "implicit rendering".
+    <p>
+    <a class="linkbold" href="https://arxiv.org/abs/2308.04079" target="_blank">3D Gaussian Splatting for Real-Time Radiance Field Rendering</a><br>
+    NeRFs are effective at representing 3d scences from images and videos however they are slow during training and inference. A more recent method named 
+    "Gaussian Splatting" is much faster as it uses traditional 3d rasterisation techniques. The scene is represented by 3d gaussians which are trained to
+    match the scene provided to the model. Gaussian Splatting is a form of explicit rendering as the 3d objects in the scene are specified.
+    <p>
+  
     <h2>Publicaitons from Organisations</h2>
     <p>
     <a class="linkbold" href="https://ai.meta.com/results/?amp%3Bsort_by=most_recent&content_types%5B0%5D=publication" target="_blank">Meta AI Publications</a><br>
     Meta (owners of Facebook) have a large AI research department named Meta FAIR. They have an open model mentality and pubish
     many papers.
+    <div style="height: 60px; text-align: center; padding-top: 120px;">© Craig Brennan 2024</div>
     </div>
   </div> 
-  <div id="footer"><div id="footercont">© Craig Brennan 2024</div></div>
+  <!-- <div id="footer"><div id="footercont">© Craig Brennan 2024</div></div> -->
 </body>
 </html>  
