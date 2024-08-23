@@ -46,6 +46,14 @@ body {
 }
 
 #footer {
+    height: 60px;
+    padding-top: 100px;
+    padding-left: 40%;
+    font-size: 11pt;
+}
+
+/*
+#footer {
     height:160px;
     position: relative;
     clear: both;
@@ -57,4 +65,4 @@ body {
     bottom: 30px;
     left: 46%;
     font-size: 11pt;
-}
+} */
