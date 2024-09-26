@@ -41,7 +41,31 @@
         x = self.activation(x)
         return x
     </code>
-    <div id="footer" style="margin-top: 100px">© Craig Brennan 2024</div>
+    <p>
+    This code defines a binary classifier model using the PyTorch Neural Network (nn) module. A binary classifier is a network
+    which takes N inputs and has a single output between 0 and 1 which specifies the probability that the inputs represent a 
+    particular class. For example the inputs could be the grades for assignments and exams for a university course and the output
+    would represent the probability of the student passing the course.
+    <p>
+    The layers of the Neural Network and the activation functions are defined and wrapped in a class. The class inherits from the 
+    <code>nn.Module</code> class in order to provide the desired neural network functionality. The init method has 2 parameters 
+    which specity the number of inputs and the number of hidden neurons.
+    <p>
+    The first line in the init method calls <code>super().__init__()</code> which performs the initialistion of the nn module. Then
+    we define the fc1 and fc2 fully-connected layers and pass in the number of inputs and outputs for each layer. Finally the activation
+    function is defined which in this case is the Sigmoid function which will compress the output values of the neural network to between
+    0 and 1.
+    <p>
+    The forward method defines the behavior of a forward pass through the neural network. Forward passes are used during training the 
+    network and for performing inference on a trained network. The method takes in the inputs (typically denoted as 'x') and then runs them
+    through the fully-connected layers and activation function. The output of the forward method is the prediction which in this case is
+    a value between 0 and 1.
+    <p>
+    Usually training of neural networks is performed in batches rather than sigle inputs. What this means is that PyTorch nn modules and
+    associated methods can take in either single values or arrays of values. The batching simply adds an additional dimension to the beginning
+    of the input tensor. For example if performing predictions for an entire class of students the input tensor when calling the forward method
+    could be of dimension [students, input_size] and the output would be of size [students, 1].
+    <div id="footer">© Craig Brennan 2024</div>
     </div>
   </div>
 </body>
