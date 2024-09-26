@@ -4,8 +4,10 @@
   <link href="../../images/favicon.ico" rel="shortcut icon" type="image/x-icon">
   <link rel="stylesheet" href="../../css/main.css">
   <link rel="stylesheet" href="../../css/text_elements.css">
+  <link rel="stylesheet" href="../../css/syntax.css">
+  <script type="text/javascript" src="../../js/syntax.js"></script>
 </head>
-<body>
+<body onload="syntax_highlight();">
   <div id="pagecont">
     <div id="sidepanel"><iframe name="sidepanel" src="../sidepanel.html"></iframe></div>
     <div id="maincont">
@@ -22,7 +24,7 @@
     from source. If you wish to use Conda see my <a href="anaconda_setup.html" target="_parent">Ananconda Setup</a> notes. 
     <p>
     <h2>Sample code for an MLP Classifier Model</h2>
-    <code class="cblock">
+    <code class="cblock" id="python">
     from torch import nn
 
     class BinaryClassifier(nn.Module):
