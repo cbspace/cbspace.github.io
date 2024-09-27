@@ -43,9 +43,17 @@ function syntax_highlight() {
             } else {
                 for (char_idx in word) {
                     let char = word[char_idx];
-
+                    
+                    // Look for integer constants
+                    if (is_int(word, char_idx)) {
+                        if (context == ParserContext.None) {
+                            buffer += '<number>' + char + '</number>';
+                        } else {
+                            buffer += char;
+                        }
+                    }
                     // Look for strings 
-                    if (char == '\'') {
+                    else if (char == '\'') {
                          switch (context) {
                             case ParserContext.None:
                                 context = ParserContext.InStringSingleQuote;
@@ -86,7 +94,6 @@ function syntax_highlight() {
                     }
                 }
             }
-
             buffer += ' ';
         }
         buffer += lf;
@@ -102,4 +109,25 @@ function is_escaped(word, char_idx) {
         return false;
     }
     return true;
+}
+
+// Check if an integer or float is found
+// Ensures previous character is not
+// part of a variable name
+function is_int(word, char_idx) {
+    if (word[char_idx] == '.') {
+        if (!(char_idx == 0)) {
+            prev_char = word[char_idx-1];
+            return !prev_char.match(/[a-z_)]/i);
+        } else { return true; }
+    }
+    if (isNaN(word[char_idx])) {
+        return false;
+    }
+    if (char_idx == 0) {
+        return true
+    } else {
+        prev_char = word[char_idx-1];
+        return !prev_char.match(/[a-z_]/i);
+    }
 }
