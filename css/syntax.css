@@ -8,3 +8,4 @@ number      { color: #ffff99; }
 string      { color: #d6563c; }
 comment     { color: #0b7d66; }
 function    { color: #008ae6; }
+literal     { color: #54a832; }

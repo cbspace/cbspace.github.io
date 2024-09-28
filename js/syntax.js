@@ -63,21 +63,24 @@ function write_syntax_highlight(element_id, langauge) {
                         if (is_name_char(char)) {
                             current_ident += char;
                         } else if (boundary_chars.includes(char)) {
-                            boundary_reached(line_buffer, current_ident, word, word_idx);
+                            line_buffer = update_for_identity(langauge, line_buffer, current_ident);
+                            current_ident = '';
                         }
 
                         // Look for operators
                         if (langauge.operators.includes(char)) {
-                                line_buffer += '<operator>' + char + '</operator>';
+                            line_buffer = update_for_identity(langauge, line_buffer, current_ident);
+                            current_ident = '';
+                            line_buffer += '<operator>' + char + '</operator>';
                         }
                         // Look for comment character
                         else if (char == '#') {
-                                context = ParserContext.InComment;
-                                line_buffer += '<comment>#';
+                            context = ParserContext.InComment;
+                            line_buffer += '<comment>#';
                         }
                         // Look for integer constants
                         else if (is_int(word, char_idx)) {
-                                line_buffer += '<number>' + char + '</number>';
+                            line_buffer += '<number>' + char + '</number>';
                         } else {
                             line_buffer += char;
                         }
@@ -125,6 +128,8 @@ function write_syntax_highlight(element_id, langauge) {
                         line_buffer += char;
                     }
                 }
+                line_buffer = update_for_identity(langauge, line_buffer, current_ident);
+                current_ident = '';
             }
             line_buffer += ' ';
         }
@@ -140,8 +145,20 @@ function write_syntax_highlight(element_id, langauge) {
 }
 
 // Boundary of an identity name is reached
-function boundary_reached(line_buffer, current_ident, word, word_idx) {
+// Returns the modified line buffer
+function update_for_identity(langauge, line_buffer, current_ident) {
+    if (!current_ident.length) { return line_buffer; }
 
+    // Update buffer for function or literal keywords
+    if (langauge.functions.includes(current_ident)) {
+        let word_start = line_buffer.length - current_ident.length
+        line_buffer = line_buffer.slice(0, word_start) + '<function>' + current_ident + '</function>';
+    } else if (langauge.literals.includes(current_ident)) {
+        let word_start = line_buffer.length - current_ident.length
+        line_buffer = line_buffer.slice(0, word_start) + '<literal>' + current_ident + '</literal>';
+    }
+
+    return line_buffer;
 }
 
 // Check if a character is escaped
@@ -177,7 +194,7 @@ function is_int(word, char_idx) {
 
 // Char is a-z, A-Z, 0-9, or _
 function is_name_char(str) {
-    return str.match(/[a-z_)]/i);
+    return !(str.match(/[a-z_]/i) === null)
 }
 
 // Convert html codes to characters
