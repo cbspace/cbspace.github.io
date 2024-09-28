@@ -1,5 +1,10 @@
-keyword     { color: #a94eb1; }
-declaration { color: #008ae6; }
-operator    { color: #ffff99; }
+import      { color: #a94eb1;
+              font-weight: bold; }
+keyword     { color: #54a832; 
+              font-weight: bold; }
+operator    { color: #a94eb1;
+              font-weight: bold; }
 number      { color: #ffff99; }
-string      { color: #54a832; }
+string      { color: #d6563c; }
+comment     { color: #0b7d66; }
+function    { color: #008ae6; }

@@ -3,9 +3,10 @@
 ////////////////////////////////////////////////
 
 const ParserContext = Object.freeze({
-    None: 0,
-    InStringSingleQuote: 1,
-    InStringDoubleQuote: 2
+    None:                 0,
+    InStringSingleQuote:  1,
+    InStringDoubleQuote:  2,
+    InComment:            3
 });
 
 // Syntax highlighting for Python code blocks
@@ -14,9 +15,11 @@ const ParserContext = Object.freeze({
 function syntax_highlight() {
     let lf = '\n';
     let context = ParserContext.None;
-    let keywords = ['from', 'import', 'return']
-    let declarations = ['class', 'def']
-    let operators = ['=']
+    let imports = ['from', 'import', 'as']
+    let keywords = ['class', 'def', 'return', 'if', 'for', 'in', 'not', 'or', 'and', 'assert',
+                    'continue', 'del', 'elif', 'else', 'except', 'finally', 'global', 'lambda',
+                    'nolocal', 'pass', 'raise', 'while', 'try', 'with', 'yield']
+    let operators = ['=', '*', '/', ,'%', '+', '-', '|', '^'] // Need to add <, >, &
 
     let code_block = document.getElementById('python');
     let lines = code_block.innerHTML.split(lf);
@@ -28,24 +31,41 @@ function syntax_highlight() {
         for (word_idx in words) {
             let word = words[word_idx];
 
-            if (keywords.includes(word)) {
+            if (imports.includes(word)) {
                 if (context == ParserContext.None) {
-                    buffer += '<keyword>' + word + '</keyword>';
+                    buffer += '<import>' + word + '</import>';
                 } else { 
                     buffer += word; 
                 }
-            } else if (declarations.includes(word)) {
+            } else if (keywords.includes(word)) {
                 if (context == ParserContext.None) {
-                    buffer += '<declaration>' + word + '</declaration>';
+                    buffer += '<keyword>' + word + '</keyword>';
                 } else { 
                     buffer += word; 
                 }
             } else {
                 for (char_idx in word) {
                     let char = word[char_idx];
-                    
+
+                    // Look for operators
+                    if (operators.includes(char)) {
+                        if (context == ParserContext.None) {
+                            buffer += '<operator>' + char + '</operator>';
+                        } else {
+                            buffer += char;
+                        }
+                    }
+                    // Look for comment character
+                    else if (char == '#') {
+                        if (context == ParserContext.None) {
+                            context = ParserContext.InComment;
+                            buffer += '<comment>#';
+                        } else {
+                            buffer += char;
+                        }
+                    }
                     // Look for integer constants
-                    if (is_int(word, char_idx)) {
+                    else if (is_int(word, char_idx)) {
                         if (context == ParserContext.None) {
                             buffer += '<number>' + char + '</number>';
                         } else {
@@ -70,6 +90,8 @@ function syntax_highlight() {
                             case ParserContext.InStringDoubleQuote:
                                 buffer += '\'';
                                 break;
+                            default:
+                                buffer += char;
                          }
                     } else if (char == '\"') {
                         switch (context) {
@@ -88,6 +110,8 @@ function syntax_highlight() {
                             case ParserContext.InStringSingleQuote:
                                 buffer += '\"';
                                 break;
+                            default:
+                                    buffer += char;
                         }
                     } else {
                          buffer += char;
@@ -95,6 +119,11 @@ function syntax_highlight() {
                 }
             }
             buffer += ' ';
+        }
+        // Reset the context when we are in comment and reach end of line
+        if (context == ParserContext.InComment) {
+            context = ParserContext.None
+            buffer += '</comment>';
         }
         buffer += lf;
     }
