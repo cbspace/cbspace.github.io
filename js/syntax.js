@@ -34,6 +34,7 @@ function write_syntax_highlight(element_id, langauge) {
     let block_buffer = '';
     let line_buffer = '';
     let current_ident = '';
+    let import_line = false;
 
     for (line_idx in lines) {
         let words = lines[line_idx].split(' ');
@@ -43,6 +44,7 @@ function write_syntax_highlight(element_id, langauge) {
 
             if (langauge.imports.includes(word)) {
                 if (context == ParserContext.None) {
+                    import_line = true;
                     line_buffer += '<import>' + word + '</import>';
                 } else { 
                     line_buffer += word; 
@@ -63,14 +65,14 @@ function write_syntax_highlight(element_id, langauge) {
                         if (is_name_char(char)) {
                             current_ident += char;
                         } else if (boundary_chars.includes(char)) {
-                            line_buffer = update_for_identity(langauge, line_buffer, current_ident);
+                            line_buffer = update_for_identity(langauge, line_buffer, current_ident, import_line);
                             current_ident = '';
                         }
                     }
                     // Look for operators
                     if (langauge.operators.includes(char)) {
                         if (context == ParserContext.None) {
-                            line_buffer = update_for_identity(langauge, line_buffer, current_ident);
+                            line_buffer = update_for_identity(langauge, line_buffer, current_ident, import_line);
                             current_ident = '';
                             line_buffer += '<operator>' + char + '</operator>';
                         } else {
@@ -138,7 +140,7 @@ function write_syntax_highlight(element_id, langauge) {
                         line_buffer += char;
                     }
                 }
-                line_buffer = update_for_identity(langauge, line_buffer, current_ident);
+                line_buffer = update_for_identity(langauge, line_buffer, current_ident, import_line);
                 current_ident = '';
             }
             line_buffer += ' ';
@@ -150,22 +152,27 @@ function write_syntax_highlight(element_id, langauge) {
         }
         block_buffer += line_buffer + '\n';
         line_buffer = '';
+        import_line = false
     }
     code_block.innerHTML = block_buffer;
 }
 
 // Boundary of an identity name is reached
 // Returns the modified line buffer
-function update_for_identity(langauge, line_buffer, current_ident) {
+function update_for_identity(langauge, line_buffer, current_ident, import_line=false) {
     if (!current_ident.length) { return line_buffer; }
 
-    // Update buffer for function or literal keywords
+    let word_start = line_buffer.length - current_ident.length;
+
+    // Update buffer for function, literal or method keywords
     if (langauge.functions.includes(current_ident)) {
-        let word_start = line_buffer.length - current_ident.length
         line_buffer = line_buffer.slice(0, word_start) + '<function>' + current_ident + '</function>';
     } else if (langauge.literals.includes(current_ident)) {
-        let word_start = line_buffer.length - current_ident.length
         line_buffer = line_buffer.slice(0, word_start) + '<literal>' + current_ident + '</literal>';
+    } else if ((word_start > 0) && (line_buffer[word_start-1] == '.')) {
+        if (!import_line) {
+            line_buffer = line_buffer.slice(0, word_start) + '<method>' + current_ident + '</method>';
+        }
     }
 
     return line_buffer;
