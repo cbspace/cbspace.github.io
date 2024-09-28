@@ -9,20 +9,27 @@ const ParserContext = Object.freeze({
     InComment:            3
 });
 
-// Syntax highlighting for Python code blocks
+// Set up language syntax and call highlighting function
+// TODO: Scan the page for code blocks
+function syntax_highlight() {
+    code_block_language = 'python';
+    element_id = 'python';
+
+    if (code_block_language == 'python') {
+        language = python_lang;
+    }
+
+    // Perform the syntax highlighting on code block named 'python'
+    write_syntax_highlight(element_id, language);
+}
+
+// Syntax highlighting for code block 'element_id'
 // Need to use buffer as the browswer checks for
 // HTML tag completion with each write
-function syntax_highlight() {
-    let lf = '\n';
+function write_syntax_highlight(element_id, langauge) {
     let context = ParserContext.None;
-    let imports = ['from', 'import', 'as']
-    let keywords = ['class', 'def', 'return', 'if', 'for', 'in', 'not', 'or', 'and', 'assert',
-                    'continue', 'del', 'elif', 'else', 'except', 'finally', 'global', 'lambda',
-                    'nolocal', 'pass', 'raise', 'while', 'try', 'with', 'yield']
-    let operators = ['=', '*', '/', ,'%', '+', '-', '|', '^'] // Need to add <, >, &
-
-    let code_block = document.getElementById('python');
-    let lines = code_block.innerHTML.split(lf);
+    let code_block = document.getElementById(element_id);
+    let lines = code_block.innerHTML.split('\n');
     let buffer = '';
 
     for (line_idx in lines) {
@@ -31,13 +38,13 @@ function syntax_highlight() {
         for (word_idx in words) {
             let word = words[word_idx];
 
-            if (imports.includes(word)) {
+            if (langauge.imports.includes(word)) {
                 if (context == ParserContext.None) {
                     buffer += '<import>' + word + '</import>';
                 } else { 
                     buffer += word; 
                 }
-            } else if (keywords.includes(word)) {
+            } else if (langauge.keywords.includes(word)) {
                 if (context == ParserContext.None) {
                     buffer += '<keyword>' + word + '</keyword>';
                 } else { 
@@ -48,7 +55,7 @@ function syntax_highlight() {
                     let char = word[char_idx];
 
                     // Look for operators
-                    if (operators.includes(char)) {
+                    if (langauge.operators.includes(char)) {
                         if (context == ParserContext.None) {
                             buffer += '<operator>' + char + '</operator>';
                         } else {
@@ -125,7 +132,7 @@ function syntax_highlight() {
             context = ParserContext.None
             buffer += '</comment>';
         }
-        buffer += lf;
+        buffer += '\n';
     }
     code_block.innerHTML = buffer;
 }
