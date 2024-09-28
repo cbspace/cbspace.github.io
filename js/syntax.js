@@ -57,34 +57,44 @@ function write_syntax_highlight(element_id, langauge) {
                 for (i in word) {
                     let char_idx = parseInt(i);
                     let char = word[char_idx];
-                    
+
+                    // Perform highlighting of functions and literals
                     if (context == ParserContext.None) {
-                        // Perform highlighting of functions and literals
                         if (is_name_char(char)) {
                             current_ident += char;
                         } else if (boundary_chars.includes(char)) {
                             line_buffer = update_for_identity(langauge, line_buffer, current_ident);
                             current_ident = '';
                         }
-
-                        // Look for operators
-                        if (langauge.operators.includes(char)) {
+                    }
+                    // Look for operators
+                    if (langauge.operators.includes(char)) {
+                        if (context == ParserContext.None) {
                             line_buffer = update_for_identity(langauge, line_buffer, current_ident);
                             current_ident = '';
                             line_buffer += '<operator>' + char + '</operator>';
+                        } else {
+                            line_buffer += char;
                         }
-                        // Look for comment character
-                        else if (char == '#') {
+                    }
+                    // Look for comment character
+                    else if (char == '#') {
+                        if (context == ParserContext.None) {
                             context = ParserContext.InComment;
                             line_buffer += '<comment>#';
+                        } else {
+                            line_buffer += char;
                         }
-                        // Look for integer constants
-                        else if (is_int(word, char_idx)) {
+                    }
+                    // Look for integer constants
+                    else if (is_int(word, char_idx)) {
+                        if (context == ParserContext.None) {
                             line_buffer += '<number>' + char + '</number>';
                         } else {
                             line_buffer += char;
                         }
-                    } else if (char == '\'') {   // Deal with strings below 
+                    } // Look for strings 
+                    else if (char == '\'') {
                          switch (context) {
                             case ParserContext.None:
                                 context = ParserContext.InStringSingleQuote;
