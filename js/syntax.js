@@ -30,8 +30,10 @@ function write_syntax_highlight(element_id, langauge) {
     let context = ParserContext.None;
     let code_block = document.getElementById(element_id);
     let lines = html_unescape(code_block.innerHTML).split('\n');
+
     let block_buffer = '';
     let line_buffer = '';
+    let current_ident = '';
 
     for (line_idx in lines) {
         let words = lines[line_idx].split(' ');
@@ -52,36 +54,34 @@ function write_syntax_highlight(element_id, langauge) {
                     line_buffer += word; 
                 }
             } else {
-                for (char_idx in word) {
+                for (i in word) {
+                    let char_idx = parseInt(i);
                     let char = word[char_idx];
+                    
+                    if (context == ParserContext.None) {
+                        // Perform highlighting of functions and literals
+                        if (is_name_char(char)) {
+                            current_ident += char;
+                        } else if (boundary_chars.includes(char)) {
+                            boundary_reached(line_buffer, current_ident, word, word_idx);
+                        }
 
-                    // Look for operators
-                    if (langauge.operators.includes(char)) {
-                        if (context == ParserContext.None) {
-                            line_buffer += '<operator>' + char + '</operator>';
+                        // Look for operators
+                        if (langauge.operators.includes(char)) {
+                                line_buffer += '<operator>' + char + '</operator>';
+                        }
+                        // Look for comment character
+                        else if (char == '#') {
+                                context = ParserContext.InComment;
+                                line_buffer += '<comment>#';
+                        }
+                        // Look for integer constants
+                        else if (is_int(word, char_idx)) {
+                                line_buffer += '<number>' + char + '</number>';
                         } else {
                             line_buffer += char;
                         }
-                    }
-                    // Look for comment character
-                    else if (char == '#') {
-                        if (context == ParserContext.None) {
-                            context = ParserContext.InComment;
-                            line_buffer += '<comment>#';
-                        } else {
-                            line_buffer += char;
-                        }
-                    }
-                    // Look for integer constants
-                    else if (is_int(word, char_idx)) {
-                        if (context == ParserContext.None) {
-                            line_buffer += '<number>' + char + '</number>';
-                        } else {
-                            line_buffer += char;
-                        }
-                    }
-                    // Look for strings 
-                    else if (char == '\'') {
+                    } else if (char == '\'') {   // Deal with strings below 
                          switch (context) {
                             case ParserContext.None:
                                 context = ParserContext.InStringSingleQuote;
@@ -139,6 +139,11 @@ function write_syntax_highlight(element_id, langauge) {
     code_block.innerHTML = block_buffer;
 }
 
+// Boundary of an identity name is reached
+function boundary_reached(line_buffer, current_ident, word, word_idx) {
+
+}
+
 // Check if a character is escaped
 function is_escaped(word, char_idx) {
     if (char_idx == 0) {
@@ -150,14 +155,14 @@ function is_escaped(word, char_idx) {
 }
 
 // Check if an integer or float is found
-// Ensures previous character is not
-// part of a variable name
+// If character is a dot then ensure
+// the next character is a number
 function is_int(word, char_idx) {
     if (word[char_idx] == '.') {
-        if (!(char_idx == 0)) {
-            prev_char = word[char_idx-1];
-            return !prev_char.match(/[a-z_)]/i);
-        } else { return true; }
+        if (char_idx < word.length-1) {
+            next_char = word[char_idx+1];
+            return !isNaN(next_char);
+        } else { return false; }
     }
     if (isNaN(word[char_idx])) {
         return false;
@@ -166,8 +171,13 @@ function is_int(word, char_idx) {
         return true
     } else {
         prev_char = word[char_idx-1];
-        return !prev_char.match(/[a-z_]/i);
+        return !is_name_char(prev_char);
     }
+}
+
+// Char is a-z, A-Z, 0-9, or _
+function is_name_char(str) {
+    return str.match(/[a-z_)]/i);
 }
 
 // Convert html codes to characters
