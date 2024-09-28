@@ -30,7 +30,8 @@ function write_syntax_highlight(element_id, langauge) {
     let context = ParserContext.None;
     let code_block = document.getElementById(element_id);
     let lines = html_unescape(code_block.innerHTML).split('\n');
-    let buffer = '';
+    let block_buffer = '';
+    let line_buffer = '';
 
     for (line_idx in lines) {
         let words = lines[line_idx].split(' ');
@@ -40,15 +41,15 @@ function write_syntax_highlight(element_id, langauge) {
 
             if (langauge.imports.includes(word)) {
                 if (context == ParserContext.None) {
-                    buffer += '<import>' + word + '</import>';
+                    line_buffer += '<import>' + word + '</import>';
                 } else { 
-                    buffer += word; 
+                    line_buffer += word; 
                 }
             } else if (langauge.keywords.includes(word)) {
                 if (context == ParserContext.None) {
-                    buffer += '<keyword>' + word + '</keyword>';
+                    line_buffer += '<keyword>' + word + '</keyword>';
                 } else { 
-                    buffer += word; 
+                    line_buffer += word; 
                 }
             } else {
                 for (char_idx in word) {
@@ -57,26 +58,26 @@ function write_syntax_highlight(element_id, langauge) {
                     // Look for operators
                     if (langauge.operators.includes(char)) {
                         if (context == ParserContext.None) {
-                            buffer += '<operator>' + char + '</operator>';
+                            line_buffer += '<operator>' + char + '</operator>';
                         } else {
-                            buffer += char;
+                            line_buffer += char;
                         }
                     }
                     // Look for comment character
                     else if (char == '#') {
                         if (context == ParserContext.None) {
                             context = ParserContext.InComment;
-                            buffer += '<comment>#';
+                            line_buffer += '<comment>#';
                         } else {
-                            buffer += char;
+                            line_buffer += char;
                         }
                     }
                     // Look for integer constants
                     else if (is_int(word, char_idx)) {
                         if (context == ParserContext.None) {
-                            buffer += '<number>' + char + '</number>';
+                            line_buffer += '<number>' + char + '</number>';
                         } else {
-                            buffer += char;
+                            line_buffer += char;
                         }
                     }
                     // Look for strings 
@@ -84,57 +85,58 @@ function write_syntax_highlight(element_id, langauge) {
                          switch (context) {
                             case ParserContext.None:
                                 context = ParserContext.InStringSingleQuote;
-                                buffer += '<string>\'';
+                                line_buffer += '<string>\'';
                                 break;
                             case ParserContext.InStringSingleQuote: 
                                 if (!(is_escaped(word, char_idx))) {
                                     context = ParserContext.None;
-                                    buffer += '\'</string>';
+                                    line_buffer += '\'</string>';
                                 } else {
-                                    buffer += '\'';
+                                    line_buffer += '\'';
                                 }
                                 break;
                             case ParserContext.InStringDoubleQuote:
-                                buffer += '\'';
+                                line_buffer += '\'';
                                 break;
                             default:
-                                buffer += char;
+                                line_buffer += char;
                          }
                     } else if (char == '\"') {
                         switch (context) {
                             case ParserContext.None:
                                 context = ParserContext.InStringDoubleQuote;
-                                buffer += '<string>\"';
+                                line_buffer += '<string>\"';
                                 break;
                             case ParserContext.InStringDoubleQuote:
                                if (!(is_escaped(word, char_idx))) {
                                     context = ParserContext.None;
-                                    buffer += '\"</string>';
+                                    line_buffer += '\"</string>';
                                 } else {
-                                   buffer += '\"';
+                                   line_buffer += '\"';
                                 }
                                 break;
                             case ParserContext.InStringSingleQuote:
-                                buffer += '\"';
+                                line_buffer += '\"';
                                 break;
                             default:
-                                    buffer += char;
+                                    line_buffer += char;
                         }
                     } else {
-                        buffer += char;
+                        line_buffer += char;
                     }
                 }
             }
-            buffer += ' ';
+            line_buffer += ' ';
         }
         // Reset the context when we are in comment and reach end of line
         if (context == ParserContext.InComment) {
             context = ParserContext.None
-            buffer += '</comment>';
+            line_buffer += '</comment>';
         }
-        buffer += '\n';
+        block_buffer += line_buffer + '\n';
+        line_buffer = '';
     }
-    code_block.innerHTML = buffer;
+    code_block.innerHTML = block_buffer;
 }
 
 // Check if a character is escaped

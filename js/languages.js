@@ -5,5 +5,6 @@ const python_lang = {
     keywords: ['class', 'def', 'return', 'if', 'for', 'in', 'not', 'or', 'and', 'assert',
                     'continue', 'del', 'elif', 'else', 'except', 'finally', 'global', 'lambda',
                     'nolocal', 'pass', 'raise', 'while', 'try', 'with', 'yield'],
-    operators: ['=', '*', '/', ,'%', '+', '-', '|', '^', '<', '>', '&']
+    operators: ['=', '*', '/', ,'%', '+', '-', '|', '^', '<', '>', '&'],
+    functions: ['int', 'str']
 };
