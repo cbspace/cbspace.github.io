@@ -31,7 +31,7 @@ def orthographic_render_verts(scene, verts, faces, axis='z', zoom=1.0, height=76
     image = np.zeros((height, width, 3), dtype='float')
 
     # Check if pixel is in visible area
-    pixel_visible = lambda x, y: (x > 0) and (x < width) and (y > 0) and (y < height)
+    pixel_visible = lambda x, y: (x &gt; 0) and (x &lt; width) and (y &gt; 0) and (y &lt; height)
     
     # Calculate pixels per world units (horizontal and vertical)
     # and screen coordinates of origin

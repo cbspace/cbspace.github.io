@@ -29,7 +29,7 @@ function syntax_highlight() {
 function write_syntax_highlight(element_id, langauge) {
     let context = ParserContext.None;
     let code_block = document.getElementById(element_id);
-    let lines = code_block.innerHTML.split('\n');
+    let lines = html_unescape(code_block.innerHTML).split('\n');
     let buffer = '';
 
     for (line_idx in lines) {
@@ -121,7 +121,7 @@ function write_syntax_highlight(element_id, langauge) {
                                     buffer += char;
                         }
                     } else {
-                         buffer += char;
+                        buffer += char;
                     }
                 }
             }
@@ -166,4 +166,14 @@ function is_int(word, char_idx) {
         prev_char = word[char_idx-1];
         return !prev_char.match(/[a-z_]/i);
     }
+}
+
+// Convert html codes to characters
+function html_unescape(str) {
+    return str.replaceAll('&lt;','<')
+              .replaceAll('&gt;','>')
+              .replaceAll('&amp;','&')
+              .replaceAll('&quot;','\"')
+              .replaceAll('&#39;','\'')
+              .replaceAll('&nbsp;',' ');
 }
