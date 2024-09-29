@@ -177,7 +177,7 @@ function write_syntax_highlight(element_id, langauge) {
             parser_context = ParserContext.None
             line_buffer += '</comment>';
         }
-        block_buffer += line_buffer + '\n';
+        block_buffer += line_buffer + '\r\n';
         line_buffer = '';
         previous_word_context = PreviousWordContext.None;
     }
@@ -240,7 +240,7 @@ function is_int(word, char_idx) {
 
 // Char is a-z, A-Z, 0-9, or _
 function is_name_char(str) {
-    return !(str.match(/[a-z_]/i) === null)
+    return !(str.match(/[a-z0-9_]/i) === null)
 }
 
 // Convert html codes to characters
