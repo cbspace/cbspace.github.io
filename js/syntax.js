@@ -9,6 +9,12 @@ const ParserContext = Object.freeze({
     InComment:            3
 });
 
+const PreviousWordContext = Object.freeze({
+    None:                 0,
+    Import:               1,
+    Definition:           2
+});
+
 // Set up language syntax and call highlighting function
 // TODO: Scan the page for code blocks
 function syntax_highlight() {
@@ -27,14 +33,15 @@ function syntax_highlight() {
 // Need to use buffer as the browswer checks for
 // HTML tag completion with each write
 function write_syntax_highlight(element_id, langauge) {
-    let context = ParserContext.None;
+    let parser_context = ParserContext.None;
+    let previous_word_context = PreviousWordContext.None;
+
     let code_block = document.getElementById(element_id);
     let lines = html_unescape(code_block.innerHTML).split('\n');
 
     let block_buffer = '';
     let line_buffer = '';
     let current_ident = '';
-    let import_line = false;
 
     for (line_idx in lines) {
         let words = lines[line_idx].split(' ');
@@ -42,15 +49,20 @@ function write_syntax_highlight(element_id, langauge) {
         for (word_idx in words) {
             let word = words[word_idx];
 
+            // Import statements
             if (langauge.imports.includes(word)) {
-                if (context == ParserContext.None) {
-                    import_line = true;
+                if (parser_context == ParserContext.None) {
+                    previous_word_context = PreviousWordContext.Import;
                     line_buffer += '<import>' + word + '</import>';
                 } else { 
                     line_buffer += word; 
-                }
+                } // Keywords
             } else if (langauge.keywords.includes(word)) {
-                if (context == ParserContext.None) {
+                if (parser_context == ParserContext.None) {
+                    // Definition statement is detected
+                    if (langauge.definitions.includes(word)) {
+                        previous_word_context = PreviousWordContext.Definition;
+                    }
                     line_buffer += '<keyword>' + word + '</keyword>';
                 } else { 
                     line_buffer += word; 
@@ -61,18 +73,26 @@ function write_syntax_highlight(element_id, langauge) {
                     let char = word[char_idx];
 
                     // Perform highlighting of functions and literals
-                    if (context == ParserContext.None) {
+                    if (parser_context == ParserContext.None) {
                         if (is_name_char(char)) {
                             current_ident += char;
-                        } else if (boundary_chars.includes(char)) {
-                            line_buffer = update_for_identity(langauge, line_buffer, current_ident, import_line);
+                        } else if (boundary_chars.includes(char)) { // Reached end of name boundary
+                            line_buffer = update_for_identity(langauge, line_buffer, current_ident, previous_word_context);
+                            // Move to used state once definition state is used
+                            if (previous_word_context == PreviousWordContext.Definition) {
+                                previous_word_context = PreviousWordContext.None;
+                            }
                             current_ident = '';
                         }
                     }
-                    // Look for operators
+                    // Look for operators - Also end of name boundary
                     if (langauge.operators.includes(char)) {
-                        if (context == ParserContext.None) {
-                            line_buffer = update_for_identity(langauge, line_buffer, current_ident, import_line);
+                        if (parser_context == ParserContext.None) {
+                            line_buffer = update_for_identity(langauge, line_buffer, current_ident, previous_word_context);
+                            // Move to used state once definition state is used
+                            if (previous_word_context == PreviousWordContext.Definition) {
+                                previous_word_context = PreviousWordContext.None;
+                            }
                             current_ident = '';
                             line_buffer += '<operator>' + char + '</operator>';
                         } else {
@@ -81,8 +101,8 @@ function write_syntax_highlight(element_id, langauge) {
                     }
                     // Look for comment character
                     else if (char == '#') {
-                        if (context == ParserContext.None) {
-                            context = ParserContext.InComment;
+                        if (parser_context == ParserContext.None) {
+                            parser_context = ParserContext.InComment;
                             line_buffer += '<comment>#';
                         } else {
                             line_buffer += char;
@@ -90,21 +110,21 @@ function write_syntax_highlight(element_id, langauge) {
                     }
                     // Look for integer constants
                     else if (is_int(word, char_idx)) {
-                        if (context == ParserContext.None) {
+                        if (parser_context == ParserContext.None) {
                             line_buffer += '<number>' + char + '</number>';
                         } else {
                             line_buffer += char;
                         }
                     } // Look for strings 
                     else if (char == '\'') {
-                         switch (context) {
+                         switch (parser_context) {
                             case ParserContext.None:
-                                context = ParserContext.InStringSingleQuote;
+                                parser_context = ParserContext.InStringSingleQuote;
                                 line_buffer += '<string>\'';
                                 break;
                             case ParserContext.InStringSingleQuote: 
                                 if (!(is_escaped(word, char_idx))) {
-                                    context = ParserContext.None;
+                                    parser_context = ParserContext.None;
                                     line_buffer += '\'</string>';
                                 } else {
                                     line_buffer += '\'';
@@ -117,14 +137,14 @@ function write_syntax_highlight(element_id, langauge) {
                                 line_buffer += char;
                          }
                     } else if (char == '\"') {
-                        switch (context) {
+                        switch (parser_context) {
                             case ParserContext.None:
-                                context = ParserContext.InStringDoubleQuote;
+                                parser_context = ParserContext.InStringDoubleQuote;
                                 line_buffer += '<string>\"';
                                 break;
                             case ParserContext.InStringDoubleQuote:
                                if (!(is_escaped(word, char_idx))) {
-                                    context = ParserContext.None;
+                                    parser_context = ParserContext.None;
                                     line_buffer += '\"</string>';
                                 } else {
                                    line_buffer += '\"';
@@ -140,26 +160,27 @@ function write_syntax_highlight(element_id, langauge) {
                         line_buffer += char;
                     }
                 }
-                line_buffer = update_for_identity(langauge, line_buffer, current_ident, import_line);
+                line_buffer = update_for_identity(langauge, line_buffer, current_ident, previous_word_context);
+                previous_word_context = PreviousWordContext.None;
                 current_ident = '';
             }
             line_buffer += ' ';
         }
         // Reset the context when we are in comment and reach end of line
-        if (context == ParserContext.InComment) {
-            context = ParserContext.None
+        if (parser_context == ParserContext.InComment) {
+            parser_context = ParserContext.None
             line_buffer += '</comment>';
         }
         block_buffer += line_buffer + '\n';
         line_buffer = '';
-        import_line = false
+        previous_word_context = PreviousWordContext.None;
     }
     code_block.innerHTML = block_buffer;
 }
 
 // Boundary of an identity name is reached
 // Returns the modified line buffer
-function update_for_identity(langauge, line_buffer, current_ident, import_line=false) {
+function update_for_identity(langauge, line_buffer, current_ident, previous_word_context) {
     if (!current_ident.length) { return line_buffer; }
 
     let word_start = line_buffer.length - current_ident.length;
@@ -169,8 +190,10 @@ function update_for_identity(langauge, line_buffer, current_ident, import_line=f
         line_buffer = line_buffer.slice(0, word_start) + '<function>' + current_ident + '</function>';
     } else if (langauge.literals.includes(current_ident)) {
         line_buffer = line_buffer.slice(0, word_start) + '<literal>' + current_ident + '</literal>';
+    } else if (previous_word_context == PreviousWordContext.Definition) {
+        line_buffer = line_buffer.slice(0, word_start) + '<method>' + current_ident + '</method>';
     } else if ((word_start > 0) && (line_buffer[word_start-1] == '.')) {
-        if (!import_line) {
+        if (!(previous_word_context == PreviousWordContext.Import)) {
             line_buffer = line_buffer.slice(0, word_start) + '<method>' + current_ident + '</method>';
         }
     }

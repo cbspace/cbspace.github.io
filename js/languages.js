@@ -17,5 +17,6 @@ const python_lang = {
                 'ord', 'pow', 'print', 'property', 'range', 'repr', 'reversed', 'round', 'set', 
                 'setattr', 'slice', 'sorted', 'staticmethod', 'str', 'sum', 'super', 'tuple', 
                 'type', 'vars', 'zip', '__import__'],
-    literals: ['True', 'False']
+    literals: ['True', 'False'], 
+    definitions: ['def', 'class']
 };
