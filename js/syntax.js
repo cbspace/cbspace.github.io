@@ -27,6 +27,12 @@ function syntax_highlight() {
 
     // Perform the syntax highlighting on code block named 'python'
     write_syntax_highlight(element_id, language);
+
+    // Perform the syntax highlighting on code block named 'cpp'
+    write_syntax_highlight('cpp', cpp_lang);
+
+    // Perform the syntax highlighting on code block named 'js'
+    write_syntax_highlight('js', js_lang);
 }
 
 // Syntax highlighting for code block 'element_id'
@@ -100,10 +106,10 @@ function write_syntax_highlight(element_id, langauge) {
                         }
                     }
                     // Look for comment character
-                    else if (char == '#') {
+                    else if (langauge.comments.includes(char)) {
                         if (parser_context == ParserContext.None) {
                             parser_context = ParserContext.InComment;
-                            line_buffer += '<comment>#';
+                            line_buffer += '<comment>' + char;
                         } else {
                             line_buffer += char;
                         }

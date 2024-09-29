@@ -3,6 +3,7 @@
 const boundary_chars = ['.', ',', '(', ')', '[', ']','{', '}', ':', ';']
 
 const python_lang = {
+    comments: ['#'],
     imports: ['from', 'import', 'as'],
     keywords: ['class', 'def', 'return', 'if', 'for', 'in', 'not', 'or', 'and', 'assert',
                     'continue', 'del', 'elif', 'else', 'except', 'finally', 'global', 'lambda',
@@ -19,4 +20,26 @@ const python_lang = {
                 'type', 'vars', 'zip', '__import__'],
     literals: ['True', 'False'], 
     definitions: ['def', 'class']
+};
+
+const cpp_lang = {
+    comments: ['//'],
+    imports: ['#include'],
+    keywords: ['class', 'return', 'if', 'for', 'in', 'assert', 'continue', 'else', 'except', 
+                'finally','while', 'try', 'with', 'int'],
+    operators: ['=', '*', '/', ,'%', '+', '-', '|', '^', '<', '>', '&'],
+    functions: [],
+    literals: ['true', 'false'], 
+    definitions: ['int', 'class']
+};
+
+const js_lang = {
+    comments: ['//'],
+    imports: ['import'],
+    keywords: ['class', 'return', 'if', 'for', 'in', 'assert', 'continue', 'else', 'except', 
+                'finally','while', 'try', 'with', 'int', 'function', 'let', 'var'],
+    operators: ['=', '*', '/', ,'%', '+', '-', '|', '^', '<', '>', '&'],
+    functions: ['parseInt'],
+    literals: ['true', 'false'], 
+    definitions: ['function', 'class']
 };

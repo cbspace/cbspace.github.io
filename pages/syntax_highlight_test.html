@@ -14,8 +14,9 @@
     <div id="maincont">
     <h1>Syntax Highlighting Test</h1>
     <p>
-    Test out my syntax highlighting javascript functions!
+    Test out my syntax highlighting functions in various languages!
     </p>
+    <h2 style="text-align: center;">Python</h2>
 <code class="cblock" id="python">
 import numpy as np
 import matplotlib.pyplot as plt
@@ -31,7 +32,8 @@ def orthographic_render_verts(scene, verts, faces, axis='z', zoom=1.0, height=76
     image = np.zeros((height, width, 3), dtype='float')
 
     # Check if pixel is in visible area
-    pixel_visible = lambda x, y: (x &gt; 0) and (x &lt; width) and (y &gt; 0) and (y &lt; height)
+    pixel_visible = lambda x, y: (x &gt; 0) and (x &lt; width) 
+                    and (y &gt; 0) and (y &lt; height)
     
     # Calculate pixels per world units (horizontal and vertical)
     # and screen coordinates of origin
@@ -49,9 +51,58 @@ def orthographic_render_verts(scene, verts, faces, axis='z', zoom=1.0, height=76
 
     # Draw the verts in white
     for v in verts:
-        image[height-int(v[scene.v_ref]*scale_v + origin_v)-1,int(v[scene.h_ref]*scale_h + origin_h)-1,:] = 1.0
+        image[height-int(v[scene.v_ref])-1,int(v[scene.h_ref])-1,:] = 1.0
     
     return image
+</code>
+
+<h2 style="text-align: center;">C++</h2>
+<code class="cblock" id="cpp">
+  #include "game.h"
+  
+  Game::Game() {
+      quit_flag = false;
+  }
+  
+  int Game::game_loop() {
+      if (auto e = main_display.init()) {
+          cout << e.value().get_error_string() << endl;
+          return 1;
+      }
+  
+      if (auto e = game_map.load_map_from_file(MAP_PATH)) {
+          cout << e.value().get_error_string() << endl;
+          return 1;
+      }
+  
+      packman_character.pos_grid_x = game_map.get_player_start_x();
+      packman_character.pos_grid_y = game_map.get_player_start_y();
+      
+      event_loop();
+      
+      return 0;
+  }
+</code>
+
+<h2 style="text-align: center;">JavaScript</h2>
+<code class="cblock" id="js">
+function write_syntax_highlight(element_id, langauge) {
+    let parser_context = ParserContext.None;
+    let previous_word_context = PreviousWordContext.None;
+
+    let code_block = document.getElementById(element_id);
+    let lines = html_unescape(code_block.innerHTML).split('\n');
+
+    let block_buffer = '';
+    let line_buffer = '';
+    let current_ident = '';
+
+    for (line_idx in lines) {
+        let words = lines[line_idx].split(' ');
+
+        for (word_idx in words) {
+            let word = words[word_idx];
+
 </code>
     <div id="footer">© Craig Brennan 2024</div>
     </div>
