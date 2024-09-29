@@ -3,6 +3,7 @@
 const boundary_chars = ['.', ',', '(', ')', '[', ']','{', '}', ':', ';']
 
 const python_lang = {
+    name: 'python',
     comments: ['#'],
     imports: ['from', 'import', 'as'],
     keywords: ['class', 'def', 'return', 'if', 'for', 'in', 'not', 'or', 'and', 'assert',
@@ -23,6 +24,7 @@ const python_lang = {
 };
 
 const cpp_lang = {
+    name: 'cpp',
     comments: ['//'],
     imports: ['#include'],
     keywords: ['class', 'return', 'if', 'for', 'in', 'assert', 'continue', 'else', 'except', 
@@ -34,6 +36,7 @@ const cpp_lang = {
 };
 
 const js_lang = {
+    name: 'js',
     comments: ['//'],
     imports: ['import'],
     keywords: ['class', 'return', 'if', 'for', 'in', 'assert', 'continue', 'else', 'except', 

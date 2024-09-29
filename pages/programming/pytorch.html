@@ -25,7 +25,7 @@
     from source. If you wish to use Conda see my <a href="anaconda_setup.html" target="_parent">Ananconda Setup</a> notes. 
     <p>
     <h2>Sample code for an MLP Classifier Model</h2>
-<code class="cblock" id="python">
+<codeblock class="python">
 from torch import nn
 
 class BinaryClassifier(nn.Module):
@@ -41,7 +41,7 @@ class BinaryClassifier(nn.Module):
       x = self.fc2(x)
       x = self.activation(x)
       return x
-</code>
+</codeblock>
     <p>
     This code defines a binary classifier model using the PyTorch Neural Network (nn) module. A binary classifier is a network
     which takes N inputs and has a single output between 0 and 1 which specifies the probability that the inputs represent a 

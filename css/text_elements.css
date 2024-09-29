@@ -10,14 +10,16 @@ h2 {
 
 code {
     font-size: 12pt;
+    font-family: monospace;
     background-color: rgb(30, 30, 30);
     margin: 0px;
     padding: 0px 6px 0px 6px;
     display: inline-block;
 }
 
-.cblock {
+codeblock {
     font-size: 11pt;
+    font-family: monospace;
     background-color: rgb(30, 30, 30);
     margin: 4px 0px 4px 0px;
     padding: 2px 6px 2px 4%;

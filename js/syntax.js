@@ -16,33 +16,34 @@ const PreviousWordContext = Object.freeze({
 });
 
 // Set up language syntax and call highlighting function
-// TODO: Scan the page for code blocks
+// Will find all code blocks on the page and highlight them
 function syntax_highlight() {
-    code_block_language = 'python';
-    element_id = 'python';
+    // Create list of languages
+    let syntax_languages = [python_lang, cpp_lang, js_lang];
 
-    if (code_block_language == 'python') {
-        language = python_lang;
+    // Loop through langauges and code blocks
+    for (langauge_idx in syntax_languages) {
+        let language = syntax_languages[langauge_idx];
+        let code_blocks = document.getElementsByClassName(language.name);
+
+        for (block_idx=0; block_idx < code_blocks.length; block_idx++) {
+            // Perform the syntax highlighting on block
+            write_syntax_highlight(code_blocks[block_idx], language);
+        }
     }
 
-    // Perform the syntax highlighting on code block named 'python'
-    write_syntax_highlight(element_id, language);
 
-    // Perform the syntax highlighting on code block named 'cpp'
-    write_syntax_highlight('cpp', cpp_lang);
 
-    // Perform the syntax highlighting on code block named 'js'
-    write_syntax_highlight('js', js_lang);
 }
 
 // Syntax highlighting for code block 'element_id'
 // Need to use buffer as the browswer checks for
 // HTML tag completion with each write
-function write_syntax_highlight(element_id, langauge) {
+function write_syntax_highlight(block, langauge) {
     let parser_context = ParserContext.None;
     let previous_word_context = PreviousWordContext.None;
 
-    let code_block = document.getElementById(element_id);
+    let code_block = block;//document.getElementById(element_id);
     let lines = html_unescape(code_block.innerHTML).split('\n');
 
     let block_buffer = '';

@@ -58,7 +58,7 @@
     <p>
     Installation is simple using docker. The following terminal command got me up and running:<br>
     <p>
-    <code class="cblock">docker run -d --network=host -v open-webui:/app/backend/data -e WEBUI_AUTH=False -e OLLAMA_BASE_URL=http://127.0.0.1:11434 --name open-webui --restart always ghcr.io/open-webui/open-webui:main</code>
+    <code>docker run -d --network=host -v open-webui:/app/backend/data -e WEBUI_AUTH=False -e OLLAMA_BASE_URL=http://127.0.0.1:11434 --name open-webui --restart always ghcr.io/open-webui/open-webui:main</code>
     <p>
     Now to access the web interface by opening a browser and navigating to http://127.0.0.1:8080. Note this port number could be
     3000 or something else if running the standard docker commands to launch open-webio. The above config is what worked for me.
