@@ -10,6 +10,17 @@
     <div id="sidepanel"><iframe name="sidepanel" src="../sidepanel.html"></iframe></div>
     <div id="maincont">
     <h1>AI News</h1>  
+      <div class="linkbold" style="color: #dbd5a1">Differential Transformers</div>
+      <div class="subtitle">09/10/2024 6pm AEST</div>
+      <p>
+      A paper has been released by Microsoft Research, which outlines Differential Transformers, a new method to reduce the noise found in 
+      transformer attention blocks. The method makes a simple change to the softmax function by creating two attention heads and subtracting
+      the attention scores from eachother. This, in effect, cancels out noise in the attention scores allowing for improved LLM performance.
+      <p>
+      The <a href="https://arxiv.org/abs/2410.05258" target="_blank">paper</a> outlines how this method can improve contextual understanding in LLMs. 
+      It is proposed this method will reduce issues with hallucination and increase in-context learning. The Differential Transformer also requires
+      less memory than traditional transformer. There are currenly no models released using this technique but I am sure we will see some soon!
+
       <div class="linkbold" style="color: #dbd5a1">Meta Release Llama 3.2 Open Weights Models</div>
       <div class="subtitle">26/09/2024 8am AEST</div>
       <p>
