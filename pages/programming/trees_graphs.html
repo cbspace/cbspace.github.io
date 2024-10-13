@@ -1,0 +1,200 @@
+<html>
+<head>
+  <title>Trees and Graphs</title>
+  <link href="../../images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/text_elements.css">
+  <link rel="stylesheet" href="../../css/syntax.css">
+  <script type="text/javascript" src="../../js/syntax.js"></script>
+  <script type="text/javascript" src="../../js/languages.js"></script>
+</head>
+<body onload="syntax_highlight();">
+  <div id="pagecont">
+    <div id="sidepanel"><iframe name="sidepanel" src="../sidepanel.html"></iframe></div>
+    <div id="maincont">
+    <h1>Trees and Graphs</h1>
+    <p>
+    Trees and graphs are import programming data structures that have many uses and applications. To begin with I will
+    go through a tree example an associated C++ code. The code example below is a solution for a question in 
+    "Cracking the Code Interview" which asks:
+    <p>
+    <i><b>4.1 Route Between Nodes:</b> Given a directed graph, design an algorithm to find out whether there is a
+    route between two nodes.</i>
+    <p>
+    I have created a simple graph with 6 nodes that are initially separated but can be joined with a flag. The below 
+    diagram shows the graph with directional connections in blue and the found path between nodes 0 and 5 in red.
+    <p>
+    <img src="../../images/graph_diagram.jpg" style="width: 80%; height: auto; display: block; margin-left: auto; margin-right: auto;">
+    <p>
+    <h2>My Solution for the Route Between Nodes Problem</h2>
+    First some boilerplate for C++. I'm making use of the standard library headers and then adding the using statments for
+    the elements that I require. This practice avoids namespace pollution and allows the types to be used without scoping
+    (e.g. <code>std::string my_string;</code> becomes <code>string my_string;</code>).
+    <p>
+<codeblock class="cpp">
+#include &lt;string&gt;
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;queue&gt;
+#include &lt;memory&gt;
+
+using std::vector;
+using std::queue;
+using std::string;
+using std::shared_ptr;
+using std::cout;
+using std::endl;
+using std::make_shared;
+</codeblock>
+<p>
+Now to define the Node class for the directed graph. The name field contains the Node
+number, the vector node_list contains pointers to all the connected nodes and bool 
+visited is used in the algorithm to keep track of visited nodes. I'm wrapping the Node
+pointers in a shared_ptr to improvement memory management.
+<p>
+The constructor uses an initialiser list to set the name and set visited to false upon 
+creation.
+<p>
+<codeblock class="cpp">
+// Directed Graph
+int Node( {
+    public: 
+        int name;
+        vector&lt;shared_ptr&lt;Node&gt;&gt; node_list;
+        bool visited;
+
+        Node(int name) : name(name), visited(false) {}
+        
+        void append(shared_ptr&lt;Node&gt; new_node) {
+            node_list.push_back(new_node);
+        }
+};
+</codeblock>
+<p>
+The function below is used to create the graph shown in the diagram above. First a loop is used
+to create all the nodes using dynamic allocation. After that the node connections are defined.
+There is a flag called add_connection that adds the connection between nodes 2 and 4 when set
+to true.
+<p>
+It's worth noting that accessing the node elements using the <code>[]</code> notation could be altered to Use
+the .at method instead. This would be a safer way to do it. I.e <code>nodes.at(0)->append(nodes.at(1));</code>
+I have used the bracket notation for readability in this example.
+<p>
+<codeblock class="cpp">
+// Create graph and return parent pointer
+shared_ptr&lt;Node&gt; create_graph(bool add_connection) {
+    const int graph_size = 6;
+    auto nodes = vector&lt;shared_ptr&lt;Node&gt;&gt;();
+
+    for (int i = 0; i &lt; graph_size; i++) {
+        nodes.push_back(make_shared&lt;Node&gt;(i));
+    }
+
+    nodes[0]-&gt;append(nodes[1]);
+    nodes[1]-&gt;append(nodes[2]);
+    nodes[2]-&gt;append(nodes[0]);
+    nodes[3]-&gt;append(nodes[5]);
+    nodes[5]-&gt;append(nodes[4]);
+    nodes[4]-&gt;append(nodes[3]);
+    
+    if (add_connection) {
+        nodes[2]-&gt;append(nodes[4]);
+    }
+
+    return nodes[0];
+}
+</codeblock>
+<p>
+The route_between_nodes function is where the action happens. This function
+takes in a pointer to the inital node in the search (n1) as well as an integer
+name for the desired end node (n2). It would have been nice to have both parameters
+be a pointer or an int however that would require a search function to be added
+in order to get the reference to a node based in it's name.
+<p>
+The algorithm is based on a Depth First Search and uses a queue to keep track of
+neighbour nodes to visit. A while loop is used to search the remaining Node references
+that are stored in the queue. If the desired end point is found the loop is broken
+and the function returns true. If the desired end node is not found the neighbours
+of the current node are iterated over and added to the queue.
+<p>
+It's important to keep track of which nodes have been visited so that infinite cycles
+do not occur. A node is set to visited at the beginning of the while loop and then
+the visited flags are checked for each neighbour before adding neighbour nodes to the
+queue.
+<p>
+<codeblock class="cpp">
+// Use a BFS to find if there is a route between nodes
+bool route_between_nodes(shared_ptr&lt;Node&gt; n1, int n2) {
+    bool route_detected = false;
+    auto q = queue&lt;shared_ptr&lt;Node&gt;&gt;();
+    q.push(n1);
+
+    while (!q.empty()) {
+        shared_ptr&lt;Node&gt; current_node = q.front();
+        q.pop();
+        current_node-&gt;visited = true;
+        cout &lt;&lt; "* Visited " &lt;&lt; current_node-&gt;name &lt;&lt; endl;
+
+        if (current_node-&gt;name == n2) {
+            route_detected = true;
+            break;
+        }
+
+        for (shared_ptr&lt;Node&gt; neighbour : current_node-&gt;node_list) {
+            if (!neighbour-&gt;visited) {
+                q.push(neighbour);
+            }
+        }
+    }
+
+    return route_detected;
+}
+</codeblock>
+<p>
+The main function is used to run the tests for the algorithm. It is first run with the flag set to false which
+creates the non-connected graph. Then the flag is set to true and the program is run again to produce the second
+output which finds the path between node 0 and node 5.
+<p>
+<codeblock class="cpp">
+// Program to test algorithm
+int main(int argc, char** argv) {
+    shared_ptr&lt;Node&gt; parent = create_graph(true);
+
+    cout &lt;&lt; "Searching for route between nodes 0 and 5:" &lt;&lt; endl;
+
+    string route_is_found = "False";
+    if (route_between_nodes(parent, 5)) {
+        route_is_found = "True";
+    }
+
+    cout &lt;&lt; "Route found: " &lt;&lt; route_is_found &lt;&lt; endl;
+
+    return 0;
+}
+</codeblock>
+    <p>
+    First the program is tested without the link between nodes 2 and 4 added. The output of the program is:
+    
+    <codeblock style="margin-top: 20; padding-top: 16; padding-bottom: 16;">Searching for route between nodes 0 and 5:
+* Visited 0
+* Visited 1
+* Visited 2
+Route found: False</codeblock>
+    <p>
+    Next, the link between nodes 2 and 4 is added. The output of the program is:
+<codeblock style="margin-top: 20; padding-top: 16; padding-bottom: 16;">Searching for route between nodes 0 and 5:
+* Visited 0
+* Visited 1
+* Visited 2
+* Visited 4
+* Visited 3
+* Visited 5
+Route found: True</codeblock>
+    <p>
+    The code is working as expected! Further improvements could be made such as the use of weak pointers to avoide circular references
+    and the inclusion of error handling.
+    <div id="footer">© Craig Brennan 2024</div>
+    </div>
+  </div>
+</body>
+</html>  
