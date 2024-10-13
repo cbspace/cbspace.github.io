@@ -23,16 +23,18 @@ const python_lang = {
     definitions: ['def', 'class']
 };
 
+// Need to fix comment operation for cpp, currenly using single slash
 const cpp_lang = {
     name: 'cpp',
-    comments: ['//'],
-    imports: ['#include'],
-    keywords: ['class', 'return', 'if', 'for', 'in', 'assert', 'continue', 'else', 'except', 
-                'finally','while', 'try', 'with', 'int'],
-    operators: ['=', '*', '/', ,'%', '+', '-', '|', '^', '<', '>', '&'],
-    functions: [],
+    comments: ['/'],
+    imports: ['#include', 'using'],
+    keywords: ['class', 'int', 'bool', 'void','return', 'if', 'for', 'in', 'assert', 'continue', 'else', 'except', 
+               'finally','while', 'try', 'with', 'auto', 'const', 'constexpr', 'public:', 'private:', 'new'],
+    operators: ['=', '*', '%', '+', '-', '|', '^', '<', '>', '&', '{', '}', ':', '!'], // "/"
+    functions: ['std', 'string', 'int', 'bool', 'void', 'vector', 'iostream', 'queue', 'memory', 
+                'cout', 'endl', 'shared_ptr', 'unique_ptr', 'make_shared', 'make_unique', 'auto'],
     literals: ['true', 'false'], 
-    definitions: ['int', 'class']
+    definitions: ['class', 'int','bool', 'void']
 };
 
 const js_lang = {
@@ -41,7 +43,7 @@ const js_lang = {
     imports: ['import'],
     keywords: ['class', 'return', 'if', 'for', 'in', 'assert', 'continue', 'else', 'except', 
                 'finally','while', 'try', 'with', 'int', 'function', 'let', 'var'],
-    operators: ['=', '*', '/', ,'%', '+', '-', '|', '^', '<', '>', '&'],
+    operators: ['=', '*', '/', '%', '+', '-', '|', '^', '<', '>', '&'],
     functions: ['parseInt'],
     literals: ['true', 'false'], 
     definitions: ['function', 'class']
