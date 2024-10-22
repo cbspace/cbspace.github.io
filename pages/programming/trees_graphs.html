@@ -66,7 +66,7 @@ class Node {
         Node(int name) : name(name), visited(false) {}
         
         void append(shared_ptr&lt;Node&gt; new_node) {
-            node_list.push_back(new_node);
+            node_list.emplace_back(new_node);
         }
 };
 </codeblock>
@@ -87,7 +87,7 @@ shared_ptr&lt;Node&gt; create_graph(bool add_connection) {
     auto nodes = vector&lt;shared_ptr&lt;Node&gt;&gt;();
 
     for (int i = 0; i &lt; graph_size; i++) {
-        nodes.push_back(make_shared&lt;Node&gt;(i));
+        nodes.emplace_back(make_shared&lt;Node&gt;(i));
     }
 
     nodes[0]-&gt;append(nodes[1]);
