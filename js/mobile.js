@@ -13,7 +13,6 @@ function check_device() {
 
    // For local testing on PC
    //update_for_mobile();
-   answer.innerHTML = is_mobile;
 }
 
 function update_for_mobile() {
@@ -41,7 +40,10 @@ function update_for_mobile() {
    
    document.getElementById('footer').className = 'footer mobile';
    
-//    // Update Sidepanel font sizes
+   // Update Sidepanel for mobile
+   document.getElementById('sidepanel').className = 'sidepanel mobile';
+
+
 //    let sidepanel_element = document.getElementByName('sidepanel');
 //    let sp_headings = sidepanel_element.contentWindow.document.getElementsByClassName('paneltopic');
 

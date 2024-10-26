@@ -23,7 +23,7 @@ body .mobile {
     margin: 24px 0px 6px 0px;
 }
 
-#sidepanel {
+.sidepanel {
     border-style: none;
     width: 20%;
     height: 98%;
@@ -31,9 +31,13 @@ body .mobile {
     float: left;
     margin-left: 2%;
     margin-right: 2%;
+
+    &.mobile {
+        width: 10%;
+    }
 }
 
-#sidepanel iframe {
+.sidepanel iframe {
     border-style: none;
     width: 100%;
     height: 100%;
