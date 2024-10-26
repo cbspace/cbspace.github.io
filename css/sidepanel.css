@@ -1,18 +1,20 @@
 .expandbutton {
-    width: 70px;
-    height: 80px;
-    border: 1px solid red;
-
-    font-size: 13pt;
     display: none;
+    width: 100px;
+    height: 160px;
+    background-color: rgba(76, 59, 84, 0.238);
+    border: 1px solid rgba(76, 59, 84, 0.238);
+    border-radius: 10px;
+}
+
+.arrow {
+    color: rgba(102, 222, 102, 0.674);
+    font-size: 30px;
+    padding-top: 10px;
 }
 
 .panel_mobile {
     font-size: 20pt;
-}
-
-.paneltopictop {
-    margin: 50px 0px 6px 0px;
 }
 
 .paneltopic {
@@ -40,12 +42,16 @@
 }
 
 .iframecontainer { 
+    margin-top: 26px;
+
     &.mobile_show {
         display: block;
+        margin-top: 0px;
     }
 
     &.mobile_hide {
         display: none;
+        margin-top: 0px;
     }
 }
 

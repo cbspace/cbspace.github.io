@@ -43,8 +43,12 @@ function update_for_mobile() {
         codeblock_elements[block_idx].className = 'mobile';
     }
 
-    // Show the sidepanel button
-    document.getElementById('expandbutton').style.display = 'block';
+    // Show the top sidepanel button
+    document.getElementById('expandbutton1').style.display = 'block';
+    document.getElementById('expandbutton1').style.height = '1200px';
+
+    // Hide bottom button
+    document.getElementById('expandbutton2').style.display = 'none';
     
     // Update Sidepanel for mobile
     document.getElementById('sidepanel').className = 'sidepanel mobile_hide';
@@ -61,11 +65,23 @@ function toggle_sidebar() {
         document.getElementById('sidepanel').className = 'sidepanel mobile_hide';
         document.getElementById('iframecontainer').className = 'iframecontainer mobile_hide';
         document.getElementById('maincont').className = 'maincont mobile_hide';
+
+        // Expand the top sidepanel button
+        document.getElementById('expandbutton1').style.height = '1200px';
+        // Hide bottom button
+        document.getElementById('expandbutton2').style.display = 'none';
+
         sidebar_visible = false;
     } else {
         document.getElementById('sidepanel').className = 'sidepanel mobile_show';
         document.getElementById('iframecontainer').className = 'iframecontainer mobile_show';
         document.getElementById('maincont').className = 'maincont mobile_show';
+
+        // Shrink the top sidepanel button
+        document.getElementById('expandbutton1').style.height = '160px';
+        // Show bottom button
+        document.getElementById('expandbutton2').style.display = 'block';
+
         sidebar_visible = true;
     }
 }
