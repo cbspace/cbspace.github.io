@@ -4,6 +4,11 @@ body {
     font-family: Verdana, sans-serif;
     font-size: 13pt;
     margin: 0;
+
+}
+
+body .mobile {
+    font-size: 22pt;
 }
 
 #pagecont {
@@ -34,7 +39,7 @@ body {
     height: 100%;
 }
 
-#maincont {
+.maincont {
     border-style: none;
     width: 50%;
     height: 98%;
@@ -43,13 +48,21 @@ body {
     margin-left: 3%;
     margin-right: 3%;
     text-align: justify;
+
+    &.mobile {
+        width: 70%;
+    }
 }
 
-#footer {
+.footer {
     height: 60px;
     padding-top: 100px;
     padding-left: 40%;
     font-size: 11pt;
+
+    &.mobile {
+        font-size: 16pt;
+    }
 }
 
 /*
