@@ -11,7 +11,7 @@
 <body onload="syntax_highlight();">
   <div id="pagecont">
     <div id="sidepanel"><iframe name="sidepanel" src="../sidepanel.html"></iframe></div>
-    <div id="maincont">
+    <div id="maincont" class="maincont"> class="maincont">
     <h1>PyTorch</h1>
     <p>
     PyTorch is the most popular AI programming libary at the moment. It's a free and open source Python libary which
@@ -66,7 +66,7 @@ class BinaryClassifier(nn.Module):
     associated methods can take in either single values or arrays of values. The batching simply adds an additional dimension to the beginning
     of the input tensor. For example if performing predictions for an entire class of students the input tensor when calling the forward method
     could be of dimension [students, input_size] and the output would be of size [students, 1].
-    <div id="footer">© Craig Brennan 2024</div>
+    <div id="footer" class="footer">© Craig Brennan 2024</div>
     </div>
   </div>
 </body>
