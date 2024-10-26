@@ -1,3 +1,6 @@
+// Global to store status of sidebar
+let sidebar_visible = false;
+
 // Make website more readable on mobile devices
 function check_device() {
    var is_mobile = false;
@@ -41,8 +44,8 @@ function update_for_mobile() {
    document.getElementById('footer').className = 'footer mobile';
    
    // Update Sidepanel for mobile
-   document.getElementById('sidepanel').className = 'sidepanel mobile';
-
+   document.getElementById('sidepanel').className = 'sidepanel mobile_hide';
+   document.getElementById('iframecontainer').className = 'iframecontainer mobile_hide';
 
 //    let sidepanel_element = document.getElementByName('sidepanel');
 //    let sp_headings = sidepanel_element.contentWindow.document.getElementsByClassName('paneltopic');
@@ -52,4 +55,16 @@ function update_for_mobile() {
 //    for (block_idx=0; block_idx < sp_headings.length; block_idx++) {
 //        sp_headings[block_idx].style.fontSize = '18pt';
 //    }
+}
+
+function toggle_sidebar() {
+    if (sidebar_visible) {
+        document.getElementById('sidepanel').className = 'sidepanel mobile_hide';
+        document.getElementById('iframecontainer').className = 'iframecontainer mobile_hide';
+        sidebar_visible = false;
+    } else {
+        document.getElementById('sidepanel').className = 'sidepanel mobile_show';
+        document.getElementById('iframecontainer').className = 'iframecontainer mobile_show';
+        sidebar_visible = true;
+    }
 }

@@ -31,9 +31,29 @@ body .mobile {
     float: left;
     margin-left: 2%;
     margin-right: 2%;
-
-    &.mobile {
+    
+    &.mobile_show {
+        /* display: block; */
         width: 10%;
+        margin-left: 1%;
+        margin-right: 0%;
+    }
+
+    &.mobile_hide {
+        /* display: none; */
+        width: 10%;
+        margin-left: 1%;
+        margin-right: 0%;
+    }
+}
+
+.iframecontainer { 
+    &.mobile_show {
+        display: block;
+    }
+
+    &.mobile_hide {
+        display: none;
     }
 }
 
@@ -54,7 +74,7 @@ body .mobile {
     text-align: justify;
 
     &.mobile {
-        width: 70%;
+        width: 80%;
     }
 }
 
