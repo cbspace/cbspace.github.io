@@ -10,11 +10,11 @@
   <script type="text/javascript" src="../js/languages.js"></script>
   <script type="text/javascript" src="../js/mobile.js"></script>
 </head>
-<body onload="syntax_highlight(); check_device();">
+<body onload="syntax_highlight(); update_for_mobile();">
   <div id="pagecont">
     <div id="sidepanel" class="sidepanel">
-        <div id="expandbutton" class="expandbutton" onclick="toggle_sidebar();">&nbsp;&nbsp;-&gt;<br> &nbsp;&nbsp;-&gt;</div>
-        <div id="iframecontainer" clsss="iframecontainer"><iframe name="sidepanel" src="../pages/sidepanel.html"></iframe></div>
+        <div id="expandbutton" class="expandbutton" onclick="toggle_sidebar();">&nbsp;&nbsp;-&gt;<br> &nbsp;&nbsp;-&gt;<br> &nbsp;&nbsp;-&gt;</div>
+        <div id="iframecontainer" class="iframecontainer"><iframe id="sidepanelframe" src="../pages/sidepanel.html"></iframe></div>
     </div>
     <div id="maincont" class="maincont">
     <h1>Mobile Rendering Test</h1>
