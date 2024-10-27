@@ -34,6 +34,11 @@ function update_for_mobile() {
         linkbold_elements[block_idx].className = 'linkbold mobile';
     }
 
+    let subtitle_elements = document.getElementsByClassName('subtitle');
+    for (block_idx=0; block_idx < subtitle_elements.length; block_idx++) {
+        subtitle_elements[block_idx].className = 'subtitle mobile';
+    }
+
     let code_elements = document.getElementsByTagName('code');
     for (block_idx=0; block_idx < code_elements.length; block_idx++) {
         code_elements[block_idx].className = 'mobile';

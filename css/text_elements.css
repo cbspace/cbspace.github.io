@@ -68,6 +68,10 @@ a:hover {
     font-style: italic;
     font-size: 12pt;
     margin-bottom: 10px;
+
+    &.mobile {
+        font-size: 20pt;
+    }
 }
 
 /* Used when no HTML formatting is required */
