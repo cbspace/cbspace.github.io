@@ -9,9 +9,13 @@
   <script type="text/javascript" src="../js/languages.js"></script>
   <script type="text/javascript" src="../js/mobile.js"></script>
 </head>
-<body onload="syntax_highlight(); check_device();">
-  <div id="pagecont">
-    <div id="sidepanel" class="sidepanel"><iframe name="sidepanel" src="./sidepanel.html"></iframe></div>
+<body onload="syntax_highlight(); update_for_mobile();">
+<div id="pagecont">
+    <div id="sidepanel" class="sidepanel">
+        <div id="expandbutton1" class="expandbutton" onclick="sidebar_button_press();"><div class="arrow">&nbsp;&gt;&gt;</div></div>
+        <div id="iframecontainer" class="iframecontainer"><iframe id="sidepanelframe" class="sidepanelframe" src="sidepanel.html"></iframe></div>
+        <div id="expandbutton2" class="expandbutton" onclick="sidebar_button_press();"><div class="arrow">&nbsp;&gt;&gt;</div></div>
+    </div>
     <div id="maincont" class="maincont">
     <h1>Syntax Highlighting Test</h1>
     <p>
