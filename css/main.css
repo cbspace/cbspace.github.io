@@ -8,7 +8,7 @@ body {
 }
 
 body .mobile {
-    font-size: 24pt;
+    font-size: 26pt;
 }
 
 #pagecont {
@@ -34,9 +34,9 @@ body .mobile {
 
     &.mobile_hide {
         width: 78%;
-        margin-left: 0%;
+        margin-left: 1%;
         margin-right: 0%;
-        font-size: 24pt;
+        font-size: 26pt;
     }
 }
 
