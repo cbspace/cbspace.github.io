@@ -10,7 +10,7 @@
 .expandbutton.mobile_show {
     display: block;
     width: 200px;
-    height: 160px;
+    height: 20%;
     margin-top: 0px;
 }
 
@@ -18,7 +18,7 @@
     display: block;
     width: 100px;
     height: 50%;
-    margin-top: 300px;
+    margin-top: 340px;
 }
 
 .arrow {
@@ -70,5 +70,5 @@
 .sidepanel iframe {
     border-style: none;
     width: 100%;
-    height: 64%;
+    height: 60%;
 }
