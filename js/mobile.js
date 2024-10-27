@@ -19,6 +19,7 @@ function is_mobile() {
     return device_is_mobile;
 }
 
+// Change element class names for mobile
 function update_for_mobile() {
     if (!is_mobile()) { return; }
 
@@ -43,46 +44,48 @@ function update_for_mobile() {
         codeblock_elements[block_idx].className = 'mobile';
     }
 
-    // Show the top sidepanel button
-    document.getElementById('expandbutton1').style.display = 'block';
-    document.getElementById('expandbutton1').style.height = '1200px';
-
-    // Hide bottom button
-    document.getElementById('expandbutton2').style.display = 'none';
-    
-    // Update Sidepanel for mobile
-    document.getElementById('sidepanel').className = 'sidepanel mobile_hide';
-    document.getElementById('iframecontainer').className = 'iframecontainer mobile_hide';
-    
-    // Update footer
     document.getElementById('footer').className = 'footer mobile';
+
+    toggle_sidebar(false);
 }
 
-function toggle_sidebar() {
-    if (!is_mobile()) { return; }
+function sidebar_button_press() {
+    if (is_mobile()) { 
+        toggle_sidebar(!sidebar_visible);
+    }
+}
 
-    if (sidebar_visible) {
-        document.getElementById('sidepanel').className = 'sidepanel mobile_hide';
-        document.getElementById('iframecontainer').className = 'iframecontainer mobile_hide';
-        document.getElementById('maincont').className = 'maincont mobile_hide';
-
-        // Expand the top sidepanel button
-        document.getElementById('expandbutton1').style.height = '1200px';
-        // Hide bottom button
-        document.getElementById('expandbutton2').style.display = 'none';
-
-        sidebar_visible = false;
-    } else {
+function toggle_sidebar(show=True) {
+    if (show) {
         document.getElementById('sidepanel').className = 'sidepanel mobile_show';
         document.getElementById('iframecontainer').className = 'iframecontainer mobile_show';
         document.getElementById('maincont').className = 'maincont mobile_show';
 
-        // Shrink the top sidepanel button
-        document.getElementById('expandbutton1').style.height = '160px';
-        // Show bottom button
+        document.getElementById('expandbutton1').className = 'expandbutton mobile_show';
+        document.getElementById('expandbutton2').className = 'expandbutton mobile_show';
         document.getElementById('expandbutton2').style.display = 'block';
 
+        let arrow_elements = document.getElementsByClassName('arrow');
+        for (block_idx=0; block_idx < arrow_elements.length; block_idx++) {
+            arrow_elements[block_idx].innerHTML = '&nbsp;&lt;&lt;';
+        }
+
         sidebar_visible = true;
+    } else {
+        document.getElementById('sidepanel').className = 'sidepanel mobile_hide';
+        document.getElementById('iframecontainer').className = 'iframecontainer mobile_hide';
+        document.getElementById('maincont').className = 'maincont mobile_hide';
+
+        document.getElementById('expandbutton1').className = 'expandbutton mobile_hide';
+        document.getElementById('expandbutton2').className = 'expandbutton mobile_hide';
+        document.getElementById('expandbutton2').style.display = 'none';
+
+        let arrow_elements = document.getElementsByClassName('arrow');
+        for (block_idx=0; block_idx < arrow_elements.length; block_idx++) {
+            arrow_elements[block_idx].innerHTML = '&nbsp;&gt;&gt;';
+        }
+
+        sidebar_visible = false;
     }
 }
 
