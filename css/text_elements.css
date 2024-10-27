@@ -29,6 +29,7 @@ codeblock {
     padding: 2px 6px 2px 4%;
     display: block;
     white-space: pre-wrap;
+    border-radius: 8px;
 
     &.mobile {
         font-size: 18pt;
