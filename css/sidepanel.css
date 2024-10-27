@@ -18,7 +18,7 @@
     display: block;
     width: 100px;
     height: 50%;
-    margin-top: 250px;
+    margin-top: 300px;
 }
 
 .arrow {
@@ -60,17 +60,15 @@
 .iframecontainer { 
     &.mobile_show {
         display: block;
-        margin-top: 26px;
     }
 
     &.mobile_hide {
         display: none;
-        margin-top: 0px;
     }
 }
 
 .sidepanel iframe {
     border-style: none;
     width: 100%;
-    height: 80%;
+    height: 64%;
 }

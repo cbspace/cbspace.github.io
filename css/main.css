@@ -33,7 +33,7 @@ body .mobile {
     }
 
     &.mobile_hide {
-        width: 78%;
+        width: 77%;
         margin-left: 1%;
         margin-right: 0%;
         font-size: 26pt;
