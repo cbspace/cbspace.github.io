@@ -59,6 +59,7 @@ function toggle_sidebar(show=True) {
     if (show) {
         document.getElementById('sidepanel').className = 'sidepanel mobile_show';
         document.getElementById('iframecontainer').className = 'iframecontainer mobile_show';
+        document.getElementById('sidepanelframe').className = 'sidepanelframe mobile_show';
         document.getElementById('maincont').className = 'maincont mobile_show';
 
         document.getElementById('expandbutton1').className = 'expandbutton mobile_show';
@@ -74,6 +75,7 @@ function toggle_sidebar(show=True) {
     } else {
         document.getElementById('sidepanel').className = 'sidepanel mobile_hide';
         document.getElementById('iframecontainer').className = 'iframecontainer mobile_hide';
+        document.getElementById('sidepanelframe').className = 'sidepanelframe mobile_hide';
         document.getElementById('maincont').className = 'maincont mobile_hide';
 
         document.getElementById('expandbutton1').className = 'expandbutton mobile_hide';
