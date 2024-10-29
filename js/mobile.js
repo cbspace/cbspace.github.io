@@ -14,7 +14,7 @@ function is_mobile() {
     }
 
     // For local testing on PC
-    //device_is_mobile = true;
+    // device_is_mobile = true;
 
     return device_is_mobile;
 }

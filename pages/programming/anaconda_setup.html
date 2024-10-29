@@ -57,8 +57,8 @@
       in less conflicts so I recommend it over conda for installations. Simply replace conda in the 
       command above with pip.
       <p>
-      To install a particular version of a package use:
-      <code>conda install [package_name]=[version]</code><br>
+      To install a particular version of a package use:<br>
+      <code>conda install [package_name]=[version]</code>
       <p>
       List installed packages:<br>
       <code>conda list  </code><br>
@@ -70,19 +70,22 @@
       reqiuired for some packages.<br>
       <code>conda config --add channels conda-forge</code>
       <p>
-      Configure conda to not run the base environment when opening the terminal:<br>
+      If you are running into conflicts with the base conda packages and system packages you can configure 
+      conda to not run the base environment when opening the terminal (command below). Another option would be to not install
+      any packages in the base enviornment.<br>
       <code>conda config --set auto_activate_base false</code>
 
       <h2>Tips for Package Management</h2>
       <p>
-      If you run into version conflicts with packages and binaries the first thing to check is the path
-      that is being used. This can be done with the which command. For example if you have a conflict with
-      the gcc version you can use this command to check which gcc is being used:<br>
-      <code>which gcc</code><br>
+      Sometimes you will run into version conflicts with packages and binaries when trying to install and compile 
+      applications in Conda environments. If this occurs the first thing to check is the path that is being used 
+      for a particular application. This can be done with the <code>which</code> command. For example if you have 
+      a conflict with the gcc version you can use this command to check which gcc is being used: <code>which gcc</code>
+      <p>
       If the outputted path is /usr/bin/package it means conda is targetting the default system installation
       (probably due to that particular package not being intstalled in the current conda environment). If the path
       is /home/user/miniconda3/envs/env_name/bin/package then the package being targeted is installed in the conda
-      environment. If you need to install another version of the package use "conda install package_name=version".
+      environment. If you need to install another version of the package use <code>conda install [package_name]=[version]</code>.
       </div>
       <div id="footer" class="footer">© Craig Brennan 2024</div>
     </div>
