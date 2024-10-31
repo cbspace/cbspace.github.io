@@ -31,6 +31,16 @@
     "fully connected" neural network, also know as a Multilayer Perceptron, performs well. They are named as such as they have a number of "layers" of neurons. 
     Each layer consists of a row of neurons and each neuron in the layer is connected to all neurons in the previous layer and the next layer.
     <p>
+    The diagram below is an example of a Fully Connected Neural Network (also know as an MLP). Starting from the left we have the inputs denoted as 
+    x<sub>0</sub> and x<sub>1</sub>. The next two columns are the "hidden" layers which are denoted by h<sub>L,N</sub> with L being the layer number and 
+    N being the neuron number in that layer. Finally on the right is h<sub>out</sub> which represents the output of the Neural Network. The final output y is 
+    obtained by passing h<sub>out</sub> through the final activation.
+    <p>
+    The activation functions are represented by the smaller circles that follow the hidden layers. Activation functions are an important part of Neural Networks 
+    as they provide a non-linearity. I like to think of the non-linearity like a buffer between the neurons allowing them to latch a value. Without the non-linearity 
+    the hidden layers would simply combine to create a single linear function. In the case of this example there are ReLU activations for the two hidden layers and 
+    a Sigmoid activation for the output. I will be going into further details on the various different activation functions in a separate <a href="activation_functions.html">post</a>.
+    <p>
       <img src="../../images/neural_network.jpg" style="width: 90%; height: auto; display: block; margin-left: auto; margin-right: auto;">
     <p>
     For image-based classiciation tasks a popular model type is the Convolutional Neural Network (CNN). A CNN uses "convolutional" layers rather than layers

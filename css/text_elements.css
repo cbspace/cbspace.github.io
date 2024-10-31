@@ -75,6 +75,8 @@ a:hover {
     }
 }
 
+sub { font-size: 70%; }
+
 /* Used when no HTML formatting is required */
 .freetext {
     white-space: pre;
