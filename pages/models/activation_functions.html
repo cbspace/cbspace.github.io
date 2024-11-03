@@ -9,6 +9,7 @@
   <script type="text/javascript" src="../../js/syntax.js"></script>
   <script type="text/javascript" src="../../js/languages.js"></script>
   <script type="text/javascript" src="../../js/mobile.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body onload="syntax_highlight(); update_for_mobile();">
     <div id="pagecont">
@@ -20,8 +21,35 @@
     <div id="maincont" class="maincont">
     <h1>Activation Functions</h1>
     <p>
-    Coming Soon!
-    <div id="footer" class="footer" style="margin-top: 700px;">© Craig Brennan 2024</div>
+    Activation functions are used in Neural Networks in order to add a non-linearity to the otherwise linear layers. The addition of a non-linearity 
+    ensures that neurons in a Neural Network are separated and not simply stacked linear functions. Without activations the Neural Network would just
+    become a linear model as the product of multiple linear functions is a linear function.
+    <p>
+    The requirements of an activation function are the following:
+    <ul>
+      <li><b>Non-Linear:</b> In order for the activation function to be effective it must be a non-linear function.</li>
+      <li><b>Differentiable:</b> Neural Networks rely on back-propagation in order to "learn" and update their parameters. It is a requirement that 
+                                 all elements of a Neural Network are are differentiable in order for back-propagation to work.</li>
+    </ul>
+    <p>
+    The following are the most commonly used activation functions:
+    <p>
+    <h2>Sigmoid</h2>
+    <p>
+    <formula>\(\sigma(x) = \frac{1}{1 + e^{-x}} \)</formula>
+    <p>
+    Sigmoid is a classic activation function which takes a positive or negative x value and outputs a value between 0 and 1. As you can 
+    see from the formula above, the sigmoid value when x = 0 is 0.5. Negative x values will give an output of from &gt;0 to &lt;0.5 and positive
+    x values will give an output of &gt;0.5 to &lt;1.
+    <p>
+    One useful property of Sigmoid is that very large values will be close to 1 and very small values will be close to 0. Values in the range of about 
+    -3 to 3 will have much more resolution is terms of their Sigmoid output compared to larger values. This provides a "squishification" type effect 
+    for large or small values.
+    <p>
+    Sigmoid is typically only used as an output activation function for binary classifiers as it has a marjor drawback when used as an activation 
+    between layers within a neural network. The drawback is the "vanishing gradient problem". What this means is that gradients will quickly decay 
+    to zero after a few Sigmoid layers due to Sigmoid's small derivative. 
+    <div id="footer" class="footer">© Craig Brennan 2024</div>
     </div>
   </div>
 </body>
