@@ -36,11 +36,11 @@
     <p>
     <h2>Sigmoid</h2>
     <p>
-    <formula>\(\sigma(x) = \frac{1}{1 + e^{-x}} \)</formula>
-    <p>
     Sigmoid is a classic activation function which takes a positive or negative x value and outputs a value between 0 and 1. As you can 
-    see from the formula above, the sigmoid value when x = 0 is 0.5. Negative x values will give an output of from &gt;0 to &lt;0.5 and positive
+    see from the formula below, the sigmoid value when x = 0 is 0.5. Negative x values will give an output of from &gt;0 to &lt;0.5 and positive
     x values will give an output of &gt;0.5 to &lt;1.
+    <p>
+    <formula>\(\sigma(x) = \frac{1}{1 + e^{-x}} \)</formula>
     <p>
     One useful property of Sigmoid is that very large values will be close to 1 and very small values will be close to 0. Values in the range of about 
     -3 to 3 will have much more resolution is terms of their Sigmoid output compared to larger values. This provides a "squishification" type effect 
@@ -49,6 +49,30 @@
     Sigmoid is typically only used as an output activation function for binary classifiers as it has a marjor drawback when used as an activation 
     between layers within a neural network. The drawback is the "vanishing gradient problem". What this means is that gradients will quickly decay 
     to zero after a few Sigmoid layers due to Sigmoid's small derivative. 
+    
+    <h2>ReLU</h2>
+    <p>
+    The ReLU (Rectified Linear Unit) activation function provides a solution to the vanishing gradient problem. It achieves this by having a much 
+    larger derivative than Sigmoid. ReLU is expressed as:
+    <p>
+    <formula>\( 
+      \text{ReLU}(x) = 
+      \begin{cases}
+        0 & \text{if } x \lt 0 \\  
+        x & \text{if } x \geq 0
+      \end{cases} 
+      \)</formula>
+    <p>
+    The derivative of ReLU(x) is equal to 1 for positive integers and is equal to 0 for negative integers. Note that the derivative of ReLU is undefined
+    for x = 0 however it is acceptable to set the derivative to either 1 or 0 in practical applications. Having a derivative of 1 allows gradients to flow 
+    during back-propagation without vanishing.
+    <p>
+    ReLU is commonly used as an activation function for hidden layers of Neural Networks however there are some downsides to it's use. ReLU has a derivative
+    of zero for negative inputs and therefore it's possible for a neuron to become disabled (stuck at zero) if it receives many negative inputs. Furthermore 
+    it's also possible to get "exploding gradients" by using ReLU as the output is not bounded. This issue can be mitigated by the use of batch normalisation.
+    <p>
+    There are many variations of the ReLU activation which address the downsides of ReLU. These include Leaky ReLU, GELU, SwiGLU and many others.
+
     <div id="footer" class="footer">© Craig Brennan 2024</div>
     </div>
   </div>
