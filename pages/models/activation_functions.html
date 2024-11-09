@@ -73,6 +73,22 @@
     <p>
     There are many variations of the ReLU activation which address the downsides of ReLU. These include Leaky ReLU, GELU, SwiGLU and many others.
 
+    <h2>Leaky ReLU</h2>
+    <p>
+    A Leaky ReLU is similar to ReLU but allows for passthrough of negative values. The negative values are defined by a "slope" parameter. Negative values 
+    of the input x are multiplied by this slope value (denoted by &alpha;).
+    <p>
+    <formula>\( 
+      \text{ReLU}(x) = 
+      \begin{cases}
+        \alpha x & \text{if } x \lt 0 \\  
+        x & \text{if } x \geq 0
+      \end{cases} 
+      \)</formula>
+    <p>
+    Using Leaky ReLU avoids the dying neuron and exploding gradient issues that can occur with standard ReLU. This activation function also introduces another 
+    hyperparameter (&alpha;) which can be tuned to increase model performance. 
+
     <div id="footer" class="footer">© Craig Brennan 2024</div>
     </div>
   </div>
