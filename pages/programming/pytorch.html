@@ -40,12 +40,12 @@ class BinaryClassifier(nn.Module):
 
       self.fc1 = nn.Linear(input_size, hidden_size)
       self.fc2 = nn.Linear(hidden_size, 1)
-      self.activation = nn.Sigmoid()
+      self.activation = nn.ReLU()
 
   def forward(self, x):
       x = self.fc1(x)
-      x = self.fc2(x)
       x = self.activation(x)
+      x = self.fc2(x)
       return x
 </codeblock>
     <p>
@@ -60,13 +60,13 @@ class BinaryClassifier(nn.Module):
     <p>
     The first line in the init method calls <code>super().__init__()</code> which performs the initialistion of the nn module. Then
     we define the fc1 and fc2 fully-connected layers and pass in the number of inputs and outputs for each layer. Finally the activation
-    function is defined which in this case is the Sigmoid function which will compress the output values of the neural network to between
-    0 and 1.
+    function is defined which in this case is the ReLU function which will add a non-linearity to the neural network (see 
+    <a href="../models/activation_functions.html" target="_blank">activation functions</a>).
     <p>
     The forward method defines the behavior of a forward pass through the neural network. Forward passes are used during training the 
     network and for performing inference on a trained network. The method takes in the inputs (typically denoted as 'x') and then runs them
     through the fully-connected layers and activation function. The output of the forward method is the prediction which in this case is
-    a value between 0 and 1.
+    a single floating point number. This will later be converted to a probability using Sigmoid.
     <p>
     Usually training of neural networks is performed in batches rather than sigle inputs. What this means is that PyTorch nn modules and
     associated methods can take in either single values or arrays of values. The batching simply adds an additional dimension to the beginning
