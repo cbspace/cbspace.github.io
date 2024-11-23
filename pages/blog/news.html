@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="../../css/text_elements.css">
   <link rel="stylesheet" href="../../css/sidepanel.css">
   <script type="text/javascript" src="../../js/mobile.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body onload="update_for_mobile();">
   <div id="pagecont">
@@ -22,6 +23,10 @@
       A paper has been released by Microsoft Research, which outlines Differential Transformers, a new method to reduce the noise found in 
       transformer attention blocks. The method makes a simple change to the softmax function by creating two attention heads and subtracting
       the attention scores from eachother. This, in effect, cancels out noise in the attention scores allowing for improved LLM performance.
+      <p>
+      <div style="text-align: center;">
+        <equation>\( \text{DiffAttn}(X) = (\text{softmax}(\frac{Q_{1}K_{1}^{T}}{\sqrt{d}}) - \lambda \text{ softmax}(\frac{Q_{2}K_{2}^{T}}{\sqrt{d}}))V \)</equation>
+      </div>
       <p>
       The <a href="https://arxiv.org/abs/2410.05258" target="_blank">paper</a> outlines how this method can improve contextual understanding in LLMs. 
       It is proposed this method will reduce issues with hallucination and increase in-context learning. The Differential Transformer also requires
