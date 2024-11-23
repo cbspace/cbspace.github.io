@@ -53,13 +53,13 @@
 
     <p>
     PyTorch Implementation:
-<codeblock class="python compact">import torch
-from torch import nn 
-  
-sigmoid = nn.Sigmoid() 
-test_value = torch.Tensor([0.0])
-print(sigmoid(test_value)</codeblock>
-<code>tensor([0.5000])</code>
+<codeblock class="python compact gap">import torch 
+from torch import nn  
+
+sigmoid = nn.Sigmoid()  
+test_values = torch.Tensor([-3.0, 0.0, 3.0])
+print(sigmoid(test_values)) </codeblock>
+<codeblock>>> tensor([0.0474, 0.5000, 0.9526])</codeblock>
 
     <h2>Tanh</h2>
     <p>
@@ -71,6 +71,15 @@ print(sigmoid(test_value)</codeblock>
     <p>
     Tanh can be used for the output activation of a network if you wish to have an output in the -1 to 1 range. This is commonly seen for image generation
     tasks.
+    <p>
+    PyTorch Implementation:
+<codeblock class="python compact gap">import torch
+from torch import nn 
+  
+tanh = nn.Tanh() 
+test_values = torch.Tensor([-3.0, 0.0, 3.0])
+print(tanh(test_values))</codeblock>
+<codeblock>>> tensor([-0.9951,  0.0000,  0.9951])</codeblock>
     
     <h2>ReLU</h2>
     <p>

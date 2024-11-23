@@ -38,6 +38,10 @@ codeblock {
     &.compact {
         padding: 10px 6px 10px 4%;
     }
+
+    &.gap {
+        margin: 10px 0px 10px 0px;
+    }
 }
 
 p {
