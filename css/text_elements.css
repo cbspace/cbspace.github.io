@@ -34,6 +34,10 @@ codeblock {
     &.mobile {
         font-size: 18pt;
     }
+
+    &.compact {
+        padding: 10px 6px 10px 4%;
+    }
 }
 
 p {

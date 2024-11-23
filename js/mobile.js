@@ -27,29 +27,29 @@ function update_for_mobile() {
     document.getElementById('maincont').className = 'maincont mobile_hide';
 
     // Increase font sizes
-    document.body.className = 'body mobile';
+    document.body.classList.add('mobile');
 
     let linkbold_elements = document.getElementsByClassName('linkbold');
     for (block_idx=0; block_idx < linkbold_elements.length; block_idx++) {
-        linkbold_elements[block_idx].className = 'linkbold mobile';
+        linkbold_elements[block_idx].classList.add('mobile');
     }
 
     let subtitle_elements = document.getElementsByClassName('subtitle');
     for (block_idx=0; block_idx < subtitle_elements.length; block_idx++) {
-        subtitle_elements[block_idx].className = 'subtitle mobile';
+        subtitle_elements[block_idx].classList.add('mobile');
     }
 
     let code_elements = document.getElementsByTagName('code');
     for (block_idx=0; block_idx < code_elements.length; block_idx++) {
-        code_elements[block_idx].className = 'mobile';
+        code_elements[block_idx].classList.add('mobile');
     }
 
     let codeblock_elements = document.getElementsByTagName('codeblock');
     for (block_idx=0; block_idx < codeblock_elements.length; block_idx++) {
-        codeblock_elements[block_idx].className = 'mobile';
+        codeblock_elements[block_idx].classList.add('mobile');
     }
 
-    document.getElementById('footer').className = 'footer mobile';
+    document.getElementById('footer').classList.add('mobile');
 
     toggle_sidebar(false);
 }

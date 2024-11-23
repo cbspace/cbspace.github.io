@@ -32,8 +32,9 @@
                                  all elements of a Neural Network are are differentiable in order for back-propagation to work.</li>
     </ul>
     <p>
-    The following are the most commonly used activation functions:
+    The following are the most commonly used activation functions. I have also included the PyTorch functions and methods that are used to implement them.
     <p>
+
     <h2>Sigmoid</h2>
     <p>
     Sigmoid is a classic activation function which takes a positive or negative x value and outputs a value between 0 and 1. As you can 
@@ -49,6 +50,25 @@
     Sigmoid is typically only used as an output activation function for binary classifiers as it has a marjor drawback when used as an activation 
     between layers within a neural network. The drawback is the "vanishing gradient problem". What this means is that gradients will quickly decay 
     to zero after a few Sigmoid layers due to Sigmoid's small derivative. 
+
+    <p>
+    PyTorch Implementation:
+<codeblock class="python compact">import torch
+from torch import nn 
+  
+sigmoid = nn.Sigmoid() 
+test_value = torch.Tensor([0.0])
+print(sigmoid(test_value)</codeblock>
+<code>tensor([0.5000])</code>
+
+    <h2>Tanh</h2>
+    <p>
+    The Tanh function, also known as the hyperbolic tangent, performs in a similar manner to Sigmoid with the key difference bing that it's output range
+    is -1 to 1.
+
+    <p>
+    <formula>\(\text{Tanh}(x) = \Large{\frac{e^x - e^{-x}}{e^x + e^{-x}}} \)</formula>
+    <p>
     
     <h2>ReLU</h2>
     <p>
