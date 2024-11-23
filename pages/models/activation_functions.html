@@ -63,12 +63,14 @@ print(sigmoid(test_value)</codeblock>
 
     <h2>Tanh</h2>
     <p>
-    The Tanh function, also known as the hyperbolic tangent, performs in a similar manner to Sigmoid with the key difference bing that it's output range
-    is -1 to 1.
-
+    The Tanh function, also known as the hyperbolic tangent, performs in a similar manner to Sigmoid with the key difference being that it's output range
+    is -1 to 1. Tanh has similar drawbacks to Sigmoid such as the vanishing gradient problmem and is therefore not suitable for use as an activation in 
+    deep networks. 
     <p>
     <formula>\(\text{Tanh}(x) = \Large{\frac{e^x - e^{-x}}{e^x + e^{-x}}} \)</formula>
     <p>
+    Tanh can be used for the output activation of a network if you wish to have an output in the -1 to 1 range. This is commonly seen for image generation
+    tasks.
     
     <h2>ReLU</h2>
     <p>
