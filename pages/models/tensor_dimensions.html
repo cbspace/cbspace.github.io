@@ -1,0 +1,78 @@
+<html>
+<head>
+  <title>Tensor Dimensions</title>
+  <link href="../../images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/text_elements.css">
+  <link rel="stylesheet" href="../../css/sidepanel.css">
+  <link rel="stylesheet" href="../../css/syntax.css">
+  <script type="text/javascript" src="../../js/syntax.js"></script>
+  <script type="text/javascript" src="../../js/languages.js"></script>
+  <script type="text/javascript" src="../../js/mobile.js"></script>
+</head>
+<body onload="syntax_highlight(); update_for_mobile();">
+    <div id="pagecont">
+    <div id="sidepanel" class="sidepanel">
+        <div id="expandbutton1" class="expandbutton" onclick="sidebar_button_press();"><div class="arrow">&nbsp;&gt;&gt;</div></div>
+        <div id="iframecontainer" class="iframecontainer"><iframe id="sidepanelframe" class="sidepanelframe" src="../sidepanel.html"></iframe></div>
+        <div id="expandbutton2" class="expandbutton" onclick="sidebar_button_press();"><div class="arrow">&nbsp;&gt;&gt;</div></div>
+    </div>
+    <div id="maincont" class="maincont">
+    <div class="listingcont">
+    <h1>Tensor Dimensions</h1>
+    <p>
+    There are some import concepts that you will need to understand in order to work with AI programming. A good starting point is to understand
+    tensors and their associated dimensining. This knowledge is critical for training, deploying and inferring from AI models.
+    <h2>What is a tensor?</h2>
+    <p>
+    From a purely mathematical standpoint a tensor is an n-dimensional sized list of numbers with n being any positive integer. The commonly 
+    used terminology differs a little in that the term "tensor" is used for a matrix with 3 or more dimensions.
+    <p>
+    <ul>
+      <li>A 0-dimensional array is usually referred to as a <b>scalar</b> (a single number)</li>
+      <li>A 1-dimensional array is usually referred to as a <b>vector</b> (e.g [x, y, z])</li>
+      <li>A 2-dimensional array is usually referred to as a <b>matrix</b> e.g:<br>
+          <div style="text-align: center;">
+          [[1, 2, 3],<br>
+          &nbsp;[4, 5, 6],<br>
+          &nbsp;[7, 8, 9]]</div></li>
+      <li>A highter dimensional array is usually referred to as a <b>tensor</b></li>
+    </ul>
+    <p>
+    When working with programming packages such a PyTorch a tensor data type can be used for any sized array. Let's have a look at what a tensor
+    looks like in PyTorch:
+    <p>
+<codeblock class="python compact gap"># Define a 1-dimensional tensor that contains 3 values
+my_tensor = torch.tensor([1, 2, 3])
+
+# Print the tensor object
+print(my_tensor)
+
+# Print the tensor data type
+print(my_tensor.dtype)</codeblock>
+<codeblock>&gt;&gt; tensor([1, 2, 3])
+   torch.int64</codeblock>
+    <p>
+    We have successfully created a PyTorch tensor of type <code>torch.int64</code>. Generally when we are dealing with AI models we will be using 
+    floating point numbers rather than integers. This can be achieved in PyTorch by defining a float tensor, denoted as one of 
+    <code>torch.float, torch.float32 or torch.FloatTensor</code> for 32-bit float tensors. For more information 
+    on the available data types see the PyTorch <a href="https://pytorch.org/docs/stable/tensor_attributes.html" target="_blank">documentation</a>. 
+    <p>
+<codeblock class="python compact gap"># Define a 1-dimensional tensor that contains 5 values
+my_tensor = torch.tensor([1, 2, 3, 4.0, 5.5], dtype=torch.float)
+
+# Print the tensor object
+print(my_tensor)
+
+# Print the tensor data type
+print(my_tensor.dtype)</codeblock>
+<codeblock>&gt;&gt; tensor([1.0000, 2.0000, 3.0000, 4.0000, 5.5000])
+   torch.float32</codeblock>
+    <p> 
+
+    </div>
+    <div id="footer" class="footer">© Craig Brennan 2024</div>
+    </div>
+  </div>
+</body>
+</html>  
