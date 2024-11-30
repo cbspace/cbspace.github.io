@@ -100,4 +100,5 @@ function toggle_sidebar(show=True) {
 function update_sidepanel_for_mobile() {
     if (!is_mobile()) { return; }
     document.body.className = 'panel_mobile';
+    document.getElementById('logo').style.display = 'none';
 }

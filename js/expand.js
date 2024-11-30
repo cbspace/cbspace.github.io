@@ -14,5 +14,4 @@ function expand(elem)
         elem.style.display = 'none';
         arr.innerHTML = "&#128317;";
     }
-    alert(t);
 }
