@@ -68,7 +68,47 @@ print(my_tensor)
 print(my_tensor.dtype)</codeblock>
 <codeblock>&gt;&gt; tensor([1.0000, 2.0000, 3.0000, 4.0000, 5.5000])
    torch.float32</codeblock>
-    <p> 
+     
+    <h2>What is a Dimension??</h2>
+    <p>
+    Let's start by thinking about the difference between 1-dimensional, 2-dimensional and 3-dimensional values. A one dimensional value is 
+    a single number e.g. 25. A 2 dimensional value is a pair of numbers e.g. [25, 32]. A 3 dimensional value consists of 3 numbers e.g.[25, 32, 45]. 
+    The qustion is, what do these numbers represent? 
+    <p>
+    They can actually represent whatever we want them to. If we want to define map coordinates for example,
+    then the values would represent the coordinates in each direction on the map. If we had a 2-dimensional map (like Google earth) we could define 
+    a 2-d array to represent X and Y coordinates, or Latitude and Longitude. If we had a 3-dimensional map (like a computer game or rendering software 
+    such as Blender) we could define a 3-dimensional array to represent X, Y and Z locations.
+    <p>
+    But what if we don't want to represent coordinates? Well that's fine as we can define the tensor to represent whatever we like. For examle we could 
+    define a 2-dimensional array to represent a paragraph in a book ([5, 3] could be page 5, paragraph 3).
+
+    <h2>What is the 4th Dimension?</h2>
+    <p>
+    I'll start off by saying this question is not as scary as it sounds. People will sometimes quote "The 4th dimesion is time, right?". Technically that 
+    is only one possible answer of many. The reason being that we can define the dimensions to represent anything we like. You could indeed represent 
+    time as a 4th dimension alongside the 3 spacial dimensions and the resultant coordinates would be of the form [x, y, z, t]. This representation is used 
+    in some areas of physics, however it's not the only option.
+    <p>
+    Another possibility for a 4th dimension is a 4th <i>spatial</i> dimension ([x, y, z, w]). What would that look like and how does it differ from having 
+    time as a 4th dimension? Firstly, if you treat time as a 4th dimension you would simply have a 3-d coordinate [x, y, z] with a 1-dimensional time value 
+    appended. This is an effective way to represent a location and a time.
+    <p>
+    Sounds simple enough, how about a 4th spatial dimension? Well that one is a bit trickier to imagine! We can picture a 2-dimensional surface as a flat 
+    surface like a piece of paper or a photograph. We can also picture a 3-dimensional surface like a room or an object. How could we possibly define a 4th 
+    dimension? Well the important thing to remeber is what we are trying to represent. In this case we are trying to create tensors that represent 
+    spatial coordinates.
+    <p>
+    This is made difficult by the fact we live in a 3-d world and have no way to picture dimensions above 3. What we need to do is separate the idea of dimensions 
+    from the idea of spatial dimensions. It's perfectly valid to define a 4th spatial dimension even though we haven't observed one in existance. The math will 
+    still work out and remember it's just a theoretical construct. Dimensions higher than 3 are indeed used often in machine learning and AI.
+    <p>
+    Coming back to the [x, y, z, t] and [x, y, z, w] comparision, one important thing to note is the idea of <i>orthongonality</i>. Put simply, the word orthogonal 
+    mean perpendicular to. For example in a 2-d space there are 90 degrees between the x and y axis just like in 3-d where there are 90 degrees between x, y and z. 
+    <p>
+    This is difficult to picture in 4 dimensions however there are indeed 90 degrees between x, y, z and w dimensions in a theoretical 4-d world. Compare this to 
+    [x, y, z, t] where you have 90 degrees between x, y and z but those dimensions have no relationship to [t]. The time dimension is essentially a straight line that 
+    moves independently of the other dimensions.
 
     </div>
     <div id="footer" class="footer">© Craig Brennan 2024</div>
