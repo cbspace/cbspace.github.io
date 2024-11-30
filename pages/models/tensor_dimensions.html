@@ -74,14 +74,16 @@ print(my_tensor.dtype)</codeblock>
      
     <h2>What is a Dimension??</h2>
     <p>
-    Let's start by thinking about the difference between 1-dimensional, 2-dimensional and 3-dimensional values. A one dimensional value is 
-    a single number e.g. 25. A 2 dimensional value is a pair of numbers e.g. [25, 32]. A 3 dimensional value consists of 3 numbers e.g.[25, 32, 45]. 
-    The qustion is, what do these numbers represent? 
+    Let's start by thinking about the difference between 1-dimensional, 2-dimensional and 3-dimensional spaces. A one dimensional space is 
+    a space that can have any point represented by only single number e.g. 25. A 2 dimensional space is a space where the points are referenced 
+    by a pair of numbers e.g. [25, 32]. A 3 dimensional space is a space where each coordinate is referenced by 3 numbers e.g.[25, 32, 45]. Note 
+    that in every case only a 1-dimensional array of numbers is needed to reference a point in the n-dimensional space. 
+    
     <p>
-    They can actually represent whatever we want them to. If we want to define map coordinates for example,
+    The qustion is, what do these numbers represent? They can actually represent whatever we want them to. If we want to define map coordinates for example,
     then the values would represent the coordinates in each direction on the map. If we had a 2-dimensional map (like Google earth) we could define 
-    a 2-d array to represent X and Y coordinates, or Latitude and Longitude. If we had a 3-dimensional map (like a computer game or rendering software 
-    such as Blender) we could define a 3-dimensional array to represent X, Y and Z locations.
+    a 1-d array containing 2 values to represent X and Y coordinates, or Latitude and Longitude. If we had a 3-dimensional map (like a computer game or rendering 
+    software such as Blender) we could define a 1-dimensional array containing 3 numbers which represent X, Y and Z locations.
     <p>
     But what if we don't want to represent coordinates? Well that's fine as we can define the tensor to represent whatever we like. For examle we could 
     define a 2-dimensional array to represent a paragraph in a book ([5, 3] could be page 5, paragraph 3).
