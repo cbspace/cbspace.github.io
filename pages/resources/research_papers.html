@@ -24,41 +24,47 @@
     recently and it can be difficult to keep up with the latest developments. It's still good to read the older papers to
     get an idea of where the latest AI developments have come from. A lot of new papers also build upon previous works.
     <p>
+
     <h2>Large Language Models</h2>
-    <p>
-    <a class="linkbold" href="https://arxiv.org/abs/1706.03762" target="_blank">Attention Is All You Need</a><br>
+    <a class="linkbold" href="https://arxiv.org/abs/1706.03762" target="_blank">Attention Is All You Need</a>
+    <div class="subtitle">Vaswani et al. (2017)</div>
     This groundbreaking paper from 2017 introduced the Transformer model. This is what begun the developments of the powerful
     GPT models that we see used in LLMs today.
-    <p>
-    <a class="linkbold" href="https://arxiv.org/abs/2106.09685" target="_blank">LoRA: Low-Rank Adaptation of Large Language Models</a><br>
+    <br><br>
+    <a class="linkbold" href="https://arxiv.org/abs/2106.09685" target="_blank">LoRA: Low-Rank Adaptation of Large Language Models</a>
+    <div class="subtitle">Hu et al. (2021)</div>
     LoRA is a method of fine tuning LLMs without retraining all the parameters. This method instead freezes all the parameters
     and then injects low rank matrices into each layer of the tranformer. These matrices are then fine tuned to the desired
     domain specific content. The result is a significant reduction in compute required for fine tuning with negligilbe loss 
     in model performance.
-    <p>
-    <a class="linkbold" href="https://arxiv.org/abs/2312.00752" target="_blank">Mamba: Linear-Time Sequence Modeling with Selective State Spaces</a><br>
+    <br><br>
+    <a class="linkbold" href="https://arxiv.org/abs/2312.00752" target="_blank">Mamba: Linear-Time Sequence Modeling with Selective State Spaces</a>
+    <div class="subtitle">Gu et al. (2024)</div>
     State Space Models are an alternative to Transformers which perform just as well. SSMs have the advantage in terms of 
     compute requirements and scaling. Transformers scale with an N<sup>2</sup> law due to their matrix multiplications whereas Mamba 
     scales linearly due to it's RNN based structure. Mamba adds some additional functionality over basic SSMs and is designed 
     to process natural langauge.
+    <br><br>
 
     <h2>Neural Radiance Fields and Gaussian Splatting</h2>
-    <p>
-    <a class="linkbold" href="https://arxiv.org/abs/2003.08934" target="_blank">NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis</a><br>
+    <a class="linkbold" href="https://arxiv.org/abs/2003.08934" target="_blank">NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis</a>
+    <div class="subtitle">Mildenhall et al. (2020)</div>
     The paper which introduced the NeRF in 2020. Neural Radiance fields are a method of representing a 3d scene from a fully-connected (MLP) model. The model
     is trained on a set of photographs from a scene and learns the 3d representation of the scene including view dependent colours and reflections. Once 
     trained the model can output a 2d image of the scene from the desired camera location and angle. This is known as "implicit rendering".
-    <p>
-    <a class="linkbold" href="https://arxiv.org/abs/2308.04079" target="_blank">3D Gaussian Splatting for Real-Time Radiance Field Rendering</a><br>
+    <br><br>
+    <a class="linkbold" href="https://arxiv.org/abs/2308.04079" target="_blank">3D Gaussian Splatting for Real-Time Radiance Field Rendering</a>
+    <div class="subtitle">Kerbl et al. (2023)</div>
     NeRFs are effective at representing 3d scences from images and videos however they are slow during training and inference. A more recent method named 
     "Gaussian Splatting" is much faster as it uses traditional 3d rasterisation techniques. The scene is represented by 3d gaussians which are trained to
     match the scene provided to the model. Gaussian Splatting is a form of explicit rendering as the 3d objects in the scene are specified.
-    <p>
-    <a class="linkbold" href="https://arxiv.org/abs/2406.00448" target="_blank">Bilateral Guided Radiance Field Processing</a><br>
+    <br><br>
+    <a class="linkbold" href="https://arxiv.org/abs/2406.00448" target="_blank">Bilateral Guided Radiance Field Processing</a>
+    <div class="subtitle">Wang et al. (2024)</div>
     This paper introdces a new method of rendering NeRFs which can correct for variations in colour of the training images. The method can also
     perform alterations to the 3d scene by simply providing a single reference image! The model will then alter the entire NeRF to match the style 
     of the reference image.
-    <p>
+    <br><br>
   
     <h2>Publicaitons from Organisations</h2>
     <p>
@@ -68,6 +74,5 @@
     <div id="footer" class="footer">© Craig Brennan 2024</div>
     </div>
   </div> 
-  <!-- <div id="footer" class="footer"><div id="footercont">© Craig Brennan 2024</div></div> -->
 </body>
 </html>  
