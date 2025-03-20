@@ -28,7 +28,8 @@ codeblock {
     margin: 4px 0px 4px 0px;
     padding: 2px 6px 2px 4%;
     display: block;
-    white-space: pre-wrap;
+    white-space: pre;
+    overflow: auto;
     border-radius: 8px;
 
     &.mobile {
